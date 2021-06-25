@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import Directory, { Section } from "../components/Directory/Directory";
+
 import prisma from "../prisma/prisma";
 import { updateProducts } from "../redux/actions/shopActions";
 import { wrapper } from "../redux/store";
@@ -15,11 +15,9 @@ export default function Home() {
     <div>
       <main>
         <div className='flex flex-col justify-center items-center w-full md:w-10/12 h-full mx-auto'>
-          {/* <Directory sections={sections} /> */}
+          YOO
         </div>
       </main>
-
-      <footer></footer>
     </div>
   );
 }
