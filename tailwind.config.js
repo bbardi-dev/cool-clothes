@@ -5,7 +5,7 @@ module.exports = {
     extend: {
       fontFamily: {
         hand: [
-          "Indie Flower",
+          "Satisfy",
           "ui-serif",
           " Georgia",
           "Cambria",

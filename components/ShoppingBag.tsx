@@ -16,10 +16,15 @@ export default function ShoppingBag() {
   return (
     <div
       onClick={() => dispatch(toggleCart())}
-      className=' w-12 h-12 relative flex items-center justify-center cursor-pointer'
+      className='flex items-center cursor-pointer justify-center'
     >
-      <img className='w-8 h-8' src='/shopping-bag.svg' />
-      <span className='absolute text-xs font-medium bottom-3'>{itemCount}</span>
+      <div className='w-12 h-12 relative flex items-center justify-center'>
+        <img className='w-9 h-9' src='/shopping-bag.svg' />
+        <span className='absolute text-xs font-bold bottom-2.5'>
+          {itemCount}
+        </span>
+      </div>
+      {/* <span className='text-lg'>Shopping Bag</span> */}
     </div>
   );
 }

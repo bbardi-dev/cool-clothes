@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const Option = ({ text, link }: { text: string; link: string }) => (
   <Link href={`/${link.toLowerCase()}`}>
-    <span className='px-3.5 py-4 cursor-point'>{text}</span>
+    <span className='px-3.5 py-4 text-lg cursor-pointer'>{text}</span>
   </Link>
 );
 
@@ -26,9 +26,15 @@ export const Header = () => {
           <Option text='Home' link='' />
           <Option text='Shop' link='shop' />
           <Option text='Login/Register' link='authpage' />
-          <Option text='Secret' link='authpage/secret' />
+          {/* <Option text='Secret' link='authpage/secret' /> */}
           <Option text='Checkout' link='checkout' />
           <ShoppingBag />
+          {/*TODO WISHLIST NAV*/}
+          <div className='cursor-pointer px-3.5 py-4'>
+            <Link href='/wishlist'>
+              <img className='w-9 h-9' src='/heart.svg' />
+            </Link>
+          </div>
         </div>
         <CartDropdown />
       </div>
