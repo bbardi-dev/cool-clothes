@@ -18,8 +18,22 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #eee;
+  background: #dbeafe;
 }
 ::-webkit-scrollbar-thumb {
-  background: #e5bcd2;
+  background: #1f2937;
+}
+
+.dash-border {
+  position: relative;
+}
+.dash-border::after {
+  content: "";
+  position: absolute;
+  background-color: #1f2937;
+  width: 5px;
+  height: 120%;
+  bottom: -5%;
+  left: 90%;
+  border-radius: 10px;
 }

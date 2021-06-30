@@ -16,15 +16,10 @@ export default function ShoppingBag() {
   return (
     <div
       onClick={() => dispatch(toggleCart())}
-      className='flex items-center cursor-pointer justify-center'
+      className='w-12 h-12 relative cursor-pointer flex items-center justify-center'
     >
-      <div className='w-12 h-12 relative flex items-center justify-center'>
-        <img className='w-9 h-9' src='/shopping-bag.svg' />
-        <span className='absolute text-xs font-bold bottom-2.5'>
-          {itemCount}
-        </span>
-      </div>
-      {/* <span className='text-lg'>Shopping Bag</span> */}
+      <img className='w-9 h-9' src='/shopping-bag.svg' />
+      <span className='absolute text-xs font-bold bottom-2.5'>{itemCount}</span>
     </div>
   );
 }
@@ -36,7 +31,7 @@ export function CartDropdown() {
   return (
     <div
       style={{ display: !hidden ? "flex" : "none" }}
-      className='absolute w-64 h-96 flex flex-col p-2 border-2 border-black bg-gray-50 top-16 right-1 z-10'
+      className='absolute w-64 h-96 flex flex-col p-2 border-2 border-gray-800 bg-white top-16 right-1 z-10'
     >
       <div className='h-80 flex flex-col overflow-scroll my-2'>
         {cartItems.length ? (
@@ -51,7 +46,7 @@ export function CartDropdown() {
       </div>
       <button
         onClick={() => dispatch(toggleCart())}
-        className='mt-auto border-2 bg-black text-white border-none p-1'
+        className='mt-auto border-2 bg-gray-800 text-white border-none p-1'
       >
         <Link href='/checkout'>GO TO CHECKOUT</Link>
       </button>

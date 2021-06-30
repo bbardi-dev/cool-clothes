@@ -2,12 +2,48 @@ import Link from "next/link";
 import Head from "next/head";
 import ShoppingBag, { CartDropdown } from "./ShoppingBag";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
-const Option = ({ text, link }: { text: string; link: string }) => (
-  <Link href={`/${link.toLowerCase()}`}>
-    <span className='px-3.5 py-4 text-lg cursor-pointer'>{text}</span>
-  </Link>
-);
+const Option = ({
+  text,
+  link,
+  imgURL,
+  imgStyle,
+  textStyle,
+}: {
+  text?: string;
+  link: string;
+  imgURL?: string;
+  imgStyle?: string;
+  textStyle?: string;
+}) => {
+  const router = useRouter();
+  console.log("routerpathname", router.pathname);
+  console.log(router.pathname.toString() == link.toLowerCase());
+
+  return (
+    <Link href={`${link.toLowerCase()}`}>
+      <a
+        className='flex items-center justify-center px-2'
+        style={
+          router.pathname.toString() == link.toLowerCase()
+            ? { borderBottom: "3px solid #FDE047" }
+            : { border: "none" }
+        }
+      >
+        {imgURL ? (
+          <img
+            className={imgStyle ? `${imgStyle}` : "w-6 h-6"}
+            src={`${imgURL}`}
+          />
+        ) : null}
+        {text ? (
+          <span className={`text-lg cursor-pointer ${textStyle}`}>{text}</span>
+        ) : null}
+      </a>
+    </Link>
+  );
+};
 
 export const Header = () => {
   return (
@@ -16,24 +52,32 @@ export const Header = () => {
         <title>Cool Clothes 😎🌊☀</title>
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
       </Head>
-      <div className='h-14 items-center w-full mb-60 flex justify-between pl-12 pr-12'>
+      <div className='w-full h-14 mb-60 flex items-center justify-evenly px-5'>
         <div className='h-full w-1/2 flex items-center'>
           <Link href='/'>
             <a className='text-4xl font-hand'>Cool Clothes</a>
           </Link>
         </div>
         <div className='w-1/2 h-full flex items-center justify-end'>
-          <Option text='Home' link='' />
-          <Option text='Shop' link='shop' />
-          <Option text='Login/Register' link='authpage' />
-          {/* <Option text='Secret' link='authpage/secret' /> */}
-          <Option text='Checkout' link='checkout' />
-          <ShoppingBag />
-          {/*TODO WISHLIST NAV*/}
-          <div className='cursor-pointer px-3.5 py-4'>
-            <Link href='/wishlist'>
-              <img className='w-9 h-9' src='/heart.svg' />
-            </Link>
+          <div className='flex w-1/3 justify-center dash-border'>
+            <Option
+              text='Home'
+              link='/'
+              textStyle='text-xl font-semibold px-4'
+            />
+            <Option
+              text='Shop'
+              link='/shop'
+              textStyle='text-xl font-semibold px-4'
+            />
+          </div>
+          <div className='flex w-1/3 justify-center'>
+            <Option text='Login/Register' link='/authpage' imgURL='user.svg' />
+            <Option text='Checkout' link='/checkout' imgURL='/cart.svg' />
+          </div>
+          <div className='flex w-1/3 justify-end'>
+            <ShoppingBag />
+            <Option link='/wishlist' imgURL='/heart.svg' imgStyle='w-9 h-9' />
           </div>
         </div>
         <CartDropdown />
