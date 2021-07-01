@@ -18,8 +18,6 @@ const Option = ({
   textStyle?: string;
 }) => {
   const router = useRouter();
-  console.log("routerpathname", router.pathname);
-  console.log(router.pathname.toString() == link.toLowerCase());
 
   return (
     <Link href={`${link.toLowerCase()}`}>
