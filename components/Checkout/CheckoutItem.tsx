@@ -13,12 +13,18 @@ interface Props {
 const CheckoutItem = ({ item }: Props) => {
   const dispatch = useDispatch();
   return (
-    <div className=' w-full flex h-24 border-b border-gray-400 px-4 py-0 items-center'>
+    <div className='w-full h-full flex border-b-2 p-1 border-gray-800 items-center'>
       <div className='w-2/12 pr-4 '>
-        <img src={item.media?.source} alt='item' className='w-full h-full' />
+        <img
+          src={item.media?.source}
+          alt='item'
+          className='w-full h-full rounded-md'
+        />
       </div>
-      <span className='w-2/12'>{item.name}</span>
-      <span className='w-2/12'>{item.price?.formatted_with_symbol}</span>
+      <span className='w-2/12 text-lg'>{item.name}</span>
+      <span className='w-2/12 text-lg font-semibold'>
+        {item.price?.formatted_with_symbol}
+      </span>
       <span className='w-2/12  flex'>
         <div
           className='cursor-pointer'

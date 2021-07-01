@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-
+import Link from "next/link";
 import prisma from "../prisma/prisma";
 import { updateProducts } from "../redux/actions/shopActions";
 import { wrapper } from "../redux/store";
@@ -21,9 +21,11 @@ export default function Home() {
         <h1 className='italic text-7xl'>Do you want to look...</h1>
         <span className='cool font-hand text-9xl'>Cool?</span>
         <p className='main-subt text-2xl'>You've come to the right place.</p>
-        <button className='bg-yellow-300 py-3 px-6 rounded-md text-3xl'>
-          See our Collection
-        </button>
+        <Link href='/shop'>
+          <button className='bg-yellow-300 py-3 px-6 rounded-md text-3xl'>
+            See our Collection
+          </button>
+        </Link>
       </div>
 
       <div className='flex flex-col items-center mt-30'>

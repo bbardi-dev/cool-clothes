@@ -17,7 +17,7 @@ export default function CollectionPreview({ category }: Props) {
       ?.filter((product: Product) =>
         product.categories?.some((e) => e.name === category.name)
       )
-      .splice(0, 3) ?? [];
+      .splice(0, 4) ?? [];
 
   return (
     <>
