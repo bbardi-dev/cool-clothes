@@ -37,3 +37,39 @@ body {
   left: 90%;
   border-radius: 10px;
 }
+
+.cool {
+  position: relative;
+  z-index: 1;
+}
+.cool::after {
+  content: "";
+  position: absolute;
+  background-color: #fde047;
+  width: 125%;
+  height: 7px;
+  bottom: 22%;
+  left: -16%;
+  border-radius: 10px;
+  z-index: -5;
+}
+
+.main-subt {
+  letter-spacing: 0.5rem;
+}
+
+.featured-title {
+  position: relative;
+  z-index: 1;
+}
+.featured-title::after {
+  content: "";
+  position: absolute;
+  background-color: #fde047;
+  width: 125%;
+  height: 5px;
+  bottom: 12%;
+  left: -15%;
+  border-radius: 10px;
+  z-index: -5;
+}

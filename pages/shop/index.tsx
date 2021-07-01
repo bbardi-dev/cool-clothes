@@ -8,7 +8,9 @@ import { Category } from "../../utils/types";
 
 const index = () => {
   const categories: Category[] | null =
-    useSelector((state: AppState) => state.shop.categories) || [];
+    useSelector((state: AppState) =>
+      state.shop.categories?.filter((category) => category.slug !== "featured")
+    ) || [];
 
   return (
     <div className='shop-page'>
