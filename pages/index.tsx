@@ -16,8 +16,8 @@ export default function Home() {
       ) || null
   );
   return (
-    <main className='flex flex-col justify-center items-center w-full md:w-10/12 h-full mx-auto gap-36'>
-      <div className='flex flex-col items-center gap-24 text-center'>
+    <main className='flex flex-col justify-center items-center h-full w-full md:w-10/12 mx-auto mt-24 gap-36'>
+      <div className='flex flex-col justify-items-center items-center gap-24 text-center'>
         <h1 className='italic text-7xl'>Do you want to look...</h1>
         <span className='cool font-hand text-9xl'>Cool?</span>
         <p className='main-subt text-2xl'>You've come to the right place.</p>

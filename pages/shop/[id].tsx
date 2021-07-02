@@ -24,7 +24,7 @@ const Categories = ({ paths }: { paths: { id: string } }) => {
           : null}
       </div>
       <Link href='/shop'>
-        <a>Go Back to Shop</a>
+        <a className='text-2xl'> &#10094; Back to Shop</a>
       </Link>
     </>
   );

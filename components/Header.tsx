@@ -50,7 +50,7 @@ export const Header = () => {
         <title>Cool Clothes 😎🌊☀</title>
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
       </Head>
-      <div className='w-full h-14 mb-20 flex items-center justify-evenly px-5'>
+      <div className='w-full h-14 mb-5 flex items-center justify-evenly px-5'>
         <div className='h-full w-1/2 flex items-center'>
           <Link href='/'>
             <a className='text-4xl font-hand'>Cool Clothes</a>
@@ -70,7 +70,7 @@ export const Header = () => {
             />
           </div>
           <div className='flex w-1/3 justify-center'>
-            <Option text='Login/Register' link='/authpage' imgURL='user.svg' />
+            <Option text='Login/Register' link='/authpage' imgURL='/user.svg' />
             <Option text='Checkout' link='/checkout' imgURL='/cart.svg' />
           </div>
           <div className='flex w-1/3 justify-end'>
