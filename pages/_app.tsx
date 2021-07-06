@@ -1,20 +1,19 @@
-import type { AppProps, AppContext } from "next/app";
 import App from "next/app";
-import "tailwindcss/tailwind.css";
-import "../layout.css";
+import type { AppProps, AppContext } from "next/app";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { User } from "@prisma/client";
 import firebase from "firebase";
-import firebaseClient from "../utils/firebase/firebaseClient";
 import nookies from "nookies";
-import { wrapper } from "../redux/store";
-import { useDispatch } from "react-redux";
-import { setCurrentUser } from "../redux/actions/userActions";
-import { Header } from "../components/Header";
-import { NextPage } from "next";
+import { AnimatePresence, motion } from "framer-motion";
+import "tailwindcss/tailwind.css";
+import "../layout.css";
+import firebaseClient from "../utils/firebase/firebaseClient";
 import commerce from "../utils/CommerceJS/commerce";
+import { wrapper } from "../redux/store";
+import { setCurrentUser } from "../redux/actions/userActions";
 import { updateCategories, updateProducts } from "../redux/actions/shopActions";
-import { app } from "firebase-admin";
+import { Header } from "../components/Header";
 
 function MyApp({ Component, pageProps }: AppProps) {
   firebaseClient();
@@ -26,11 +25,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       .onIdTokenChanged(async (firebaseUser: firebase.User | null) => {
         if (!firebaseUser) {
           dispatch(setCurrentUser(null));
-          console.log("I was set to null here");
           nookies.set(undefined, "token", "", {});
           return;
         }
-        console.log("I AM THE USER", firebaseUser);
         const token = await firebaseUser.getIdToken();
         const user: User | null = {
           displayName:
@@ -46,12 +43,20 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, []);
 
   return (
-    <>
+    <AnimatePresence exitBeforeEnter>
       <Header />
-      <div className='mx-2 my-4'>
+      <motion.div
+        exit={{ opacity: 0 }}
+        initial={{ y: 60, opacity: 0 }}
+        animate={{
+          y: 0,
+          opacity: 1,
+          transition: { duration: 0.6, ease: "easeIn" },
+        }}
+      >
         <Component {...pageProps} />
-      </div>
-    </>
+      </motion.div>
+    </AnimatePresence>
   );
 }
 

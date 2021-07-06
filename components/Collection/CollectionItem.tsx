@@ -12,8 +12,8 @@ const CollectionItem = ({ product }: Props) => {
 
   return (
     <div className='group h-96 w-52 flex flex-col items-center relative m-1 cursor-pointer '>
-      <Link href={`/shop/products/${product.id}`}>
-        <div
+      <Link href={`/shop/products/${product.id}`} passHref>
+        <a
           className='hover:opacity-75 w-full h-5/6 bg-cover bg-center mb-1.5 rounded-md'
           style={{ backgroundImage: `url(${product.media?.source})` }}
         />

@@ -13,14 +13,23 @@ import { addItem } from "../../../redux/actions/cartActions";
 const ProductDetail = ({ product }: { product: Product }) => {
   const dispatch = useDispatch();
   return (
-    <div className='h-4/6 w-full flex gap-24 p-6'>
-      <div className=' h-full w-5/12'>
+    <motion.div
+      exit={{ opacity: 0 }}
+      initial={{ y: 60, opacity: 0 }}
+      animate={{
+        y: 0,
+        opacity: 1,
+        transition: { duration: 0.6, ease: "easeIn" },
+      }}
+      className='h-4/6 w-full flex gap-12 p-6'
+    >
+      <div className=' h-full w-1/2'>
         <div
-          className='w-full h-full bg-cover bg-center'
+          className='w-full h-full bg-contain bg-no-repeat bg-center'
           style={{ backgroundImage: `url(${product?.media?.source})` }}
         />
       </div>
-      <div className='h-full w-7/12 flex flex-col gap-6'>
+      <div className='h-full w-1/2 flex flex-col gap-6'>
         <h1
           className='font-light text-7xl'
           dangerouslySetInnerHTML={{ __html: product?.name || "" }}
@@ -29,16 +38,15 @@ const ProductDetail = ({ product }: { product: Product }) => {
           {product?.price?.formatted_with_symbol}
         </h2>
         {product?.categories?.map((category) => (
-          <Link href={`/shop/${category.slug}`}>
-            <motion.span
+          <Link key={category.id} href={`/shop/${category.slug}`} passHref>
+            <motion.a
               whileHover={{
                 color: "#FFF",
               }}
               className='text-lg cursor-pointer'
-              key={category.id}
             >
               {category?.name}
-            </motion.span>
+            </motion.a>
           </Link>
         ))}
         <h4
@@ -57,7 +65,7 @@ const ProductDetail = ({ product }: { product: Product }) => {
           <img className='w-16 h-16' src='/heart.svg' />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

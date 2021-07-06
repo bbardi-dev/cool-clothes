@@ -24,13 +24,13 @@ export default function CollectionPreview({ category }: Props) {
     <>
       {products ? (
         <div className='flex flex-col mb-8'>
-          <Link href={`/shop/${category.slug}`}>
-            <motion.h1
+          <Link href={`/shop/${category.slug}`} passHref>
+            <motion.a
               whileHover={{ scale: 1.2, originX: 0 }}
               className='text-xl mb-6 cursor-pointer'
             >
               {category?.name?.toUpperCase()} &#10095;
-            </motion.h1>
+            </motion.a>
           </Link>
           <div className='flex flex-wrap justify-evenly'>
             {showcaseProducts.map((product) => (
