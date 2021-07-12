@@ -1,6 +1,6 @@
-import firebase from "firebase/app";
+import { useState } from "react";
 import { useRouter } from "next/dist/client/router";
-import React, { useState } from "react";
+import firebase from "firebase/app";
 import { useForm } from "react-hook-form";
 import { FormInput } from "../FormInput";
 

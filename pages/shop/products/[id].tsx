@@ -1,14 +1,12 @@
 import { GetStaticProps, GetStaticPropsContext } from "next";
-import { ParsedUrlQuery } from "node:querystring";
-import React from "react";
-import { useSelector } from "react-redux";
-import { AppState } from "../../../redux/types";
-import commerce from "../../../utils/CommerceJS/commerce";
-import { Category, Product } from "../../../utils/types";
 import Link from "next/link";
+import { ParsedUrlQuery } from "node:querystring";
+import { useSelector, useDispatch } from "react-redux";
 import { motion } from "framer-motion";
-import { useDispatch } from "react-redux";
+import { AppState } from "../../../redux/types";
 import { addItem } from "../../../redux/actions/cartActions";
+import commerce from "../../../utils/CommerceJS/commerce";
+import { Product } from "../../../utils/types";
 
 const ProductDetail = ({ product }: { product: Product }) => {
   const dispatch = useDispatch();

@@ -1,12 +1,12 @@
 import { GetStaticProps, GetStaticPropsContext } from "next";
+import Link from "next/link";
 import { ParsedUrlQuery } from "node:querystring";
 import { useSelector } from "react-redux";
+import { motion } from "framer-motion";
 import { AppState } from "../../redux/types";
 import commerce from "../../utils/CommerceJS/commerce";
 import { Category, Product } from "../../utils/types";
 import CollectionItem from "../../components/Collection/CollectionItem";
-import Link from "next/link";
-import { motion } from "framer-motion";
 
 const Categories = ({ paths }: { paths: { id: string } }) => {
   const products = useSelector((state: AppState) => state.shop.products);

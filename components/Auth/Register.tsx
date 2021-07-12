@@ -1,7 +1,7 @@
+import { useState } from "react";
+import { useRouter } from "next/dist/client/router";
 import { User } from "@prisma/client";
 import firebase from "firebase/app";
-import { useRouter } from "next/dist/client/router";
-import React, { FormEvent, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FormInput } from "../FormInput";
 

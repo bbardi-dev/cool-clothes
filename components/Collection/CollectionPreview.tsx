@@ -1,9 +1,7 @@
-import { motion } from "framer-motion";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { motion } from "framer-motion";
 import { AppState } from "../../redux/types";
-import getCommerce from "../../utils/CommerceJS/commerce";
 import { Category, Product } from "../../utils/types";
 import CollectionItem from "./CollectionItem";
 

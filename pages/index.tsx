@@ -1,13 +1,9 @@
-import { useSelector } from "react-redux";
 import Link from "next/link";
-import prisma from "../prisma/prisma";
-import { updateProducts } from "../redux/actions/shopActions";
-import { wrapper } from "../redux/store";
+import { useSelector } from "react-redux";
+import { motion } from "framer-motion";
 import { AppState } from "../redux/types";
-import commerce from "../utils/CommerceJS/commerce";
 import { Product } from "../utils/types";
 import CollectionItem from "../components/Collection/CollectionItem";
-import { motion } from "framer-motion";
 
 export default function Home() {
   const products: Product[] | null = useSelector(

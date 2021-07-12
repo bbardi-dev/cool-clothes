@@ -1,8 +1,7 @@
 import Link from "next/link";
 import Head from "next/head";
-import ShoppingBag, { CartDropdown } from "./ShoppingBag";
-import { useState } from "react";
 import { useRouter } from "next/router";
+import ShoppingBag, { CartDropdown } from "./ShoppingBag";
 
 const Option = ({
   text,
