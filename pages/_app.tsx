@@ -1,10 +1,14 @@
 import App from "next/app";
 import type { AppProps, AppContext } from "next/app";
+import { Router } from "next/router";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { User } from "@prisma/client";
 import firebase from "firebase";
 import nookies from "nookies";
+//@ts-ignore
+import NProgress from "nprogress";
+import "nprogress/nprogress.css";
 import { AnimatePresence, motion } from "framer-motion";
 import "tailwindcss/tailwind.css";
 import "../layout.css";
@@ -16,6 +20,17 @@ import { updateCategories, updateProducts } from "../redux/actions/shopActions";
 import { Header } from "../components/Header";
 
 function MyApp({ Component, pageProps }: AppProps) {
+  NProgress.configure({
+    minimum: 0.3,
+    easing: "ease",
+    speed: 800,
+    showSpinner: false,
+  });
+
+  Router.events.on("routeChangeStart", () => NProgress.start());
+  Router.events.on("routeChangeComplete", () => NProgress.done());
+  Router.events.on("routeChangeError", () => NProgress.done());
+
   firebaseClient();
   const dispatch = useDispatch();
 
