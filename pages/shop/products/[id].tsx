@@ -1,11 +1,9 @@
-import { GetStaticProps, GetStaticPropsContext } from "next";
 import Link from "next/link";
-import { ParsedUrlQuery } from "node:querystring";
+import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { motion } from "framer-motion";
 import { AppState } from "../../../redux/types";
 import { addItem } from "../../../redux/actions/cartActions";
-import commerce from "../../../utils/CommerceJS/commerce";
 import { Product } from "../../../utils/types";
 
 const ProductDetail = ({ product }: { product: Product }) => {
@@ -67,10 +65,13 @@ const ProductDetail = ({ product }: { product: Product }) => {
   );
 };
 
-const ProductDetails = ({ paths }: { paths: { id: string } }) => {
+const ProductDetails = () => {
+  const router = useRouter();
+  const { id } = router.query;
+
   const products = useSelector((state: AppState) => state.shop.products);
   const thisProduct: Product | null =
-    products?.filter((product: Product) => product.id === paths.id)[0] ?? null;
+    products?.filter((product: Product) => product.id === id)[0] ?? null;
 
   return (
     <div className='flex flex-col w-full h-screen items-center justify-center gap-12'>
@@ -86,28 +87,3 @@ const ProductDetails = ({ paths }: { paths: { id: string } }) => {
   );
 };
 export default ProductDetails;
-
-export const getStaticPaths = async () => {
-  const { data: products } = await commerce.products.list({ limit: 200 });
-
-  const paths = products.map((product: Product) => ({
-    params: { id: product.id },
-  }));
-
-  return {
-    paths,
-    fallback: false,
-  };
-};
-
-export const getStaticProps: GetStaticProps = async (
-  ctx: GetStaticPropsContext<ParsedUrlQuery>
-) => {
-  const id = ctx.params?.id;
-
-  return {
-    props: {
-      paths: { id },
-    },
-  };
-};

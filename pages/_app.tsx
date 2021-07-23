@@ -21,7 +21,7 @@ import { Header } from "../components/Header";
 
 function MyApp({ Component, pageProps }: AppProps) {
   NProgress.configure({
-    minimum: 0.3,
+    minimum: 0.1,
     easing: "ease",
     speed: 800,
     showSpinner: false,

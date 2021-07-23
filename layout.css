@@ -74,3 +74,8 @@ body {
   border-radius: 10px;
   z-index: -5;
 }
+
+#nprogress .bar {
+  background: #29d;
+  height: 5px;
+}

@@ -1,18 +1,19 @@
-import { GetStaticProps, GetStaticPropsContext } from "next";
 import Link from "next/link";
-import { ParsedUrlQuery } from "node:querystring";
 import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
 import { AppState } from "../../redux/types";
-import commerce from "../../utils/CommerceJS/commerce";
-import { Category, Product } from "../../utils/types";
+import { Product } from "../../utils/types";
 import CollectionItem from "../../components/Collection/CollectionItem";
+import { useRouter } from "next/router";
 
-const Categories = ({ paths }: { paths: { id: string } }) => {
+const Categories = () => {
+  const router = useRouter();
+  const { id } = router.query;
+
   const products = useSelector((state: AppState) => state.shop.products);
   const filteredByCategory: Product[] =
     products?.filter((product: Product) =>
-      product.categories?.some((e) => e.slug === paths.id)
+      product.categories?.some((e) => e.slug === id)
     ) ?? [];
 
   return (
@@ -38,31 +39,6 @@ const Categories = ({ paths }: { paths: { id: string } }) => {
       </Link>
     </motion.div>
   );
-};
-
-export const getStaticPaths = async () => {
-  const { data: categories } = await commerce.categories.list();
-
-  const paths = categories.map((category: Category) => ({
-    params: { id: category.slug },
-  }));
-
-  return {
-    paths,
-    fallback: false,
-  };
-};
-
-export const getStaticProps: GetStaticProps = async (
-  ctx: GetStaticPropsContext<ParsedUrlQuery>
-) => {
-  const id = ctx.params?.id;
-
-  return {
-    props: {
-      paths: { id },
-    },
-  };
 };
 
 export default Categories;
