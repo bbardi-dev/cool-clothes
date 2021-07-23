@@ -45,10 +45,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         }
         const token = await firebaseUser.getIdToken();
         const user: User | null = {
-          displayName:
-            firebaseUser.displayName /*TODO in registration*/ ?? "yee",
           uid: firebaseUser.uid,
-          email: firebaseUser.email ?? "email not provided",
+          wishlist: [],
+          displayName: firebaseUser.displayName || "you dun goofed",
         };
         dispatch(setCurrentUser(user));
         nookies.set(undefined, "token", token, {});
@@ -58,7 +57,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, []);
 
   return (
-    <AnimatePresence exitBeforeEnter>
+    <>
       <Header />
       <motion.div
         exit={{ opacity: 0 }}
@@ -71,7 +70,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       >
         <Component {...pageProps} />
       </motion.div>
-    </AnimatePresence>
+    </>
   );
 }
 

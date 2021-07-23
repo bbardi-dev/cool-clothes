@@ -8,6 +8,7 @@ import { FormInput } from "../FormInput";
 interface FormData {
   email: string;
   password: string;
+  displayName: string;
 }
 
 const Register = () => {
@@ -34,24 +35,31 @@ const Register = () => {
     return await response.json();
   }
 
-  const onSubmit = handleSubmit(async ({ email, password }: FormData) => {
-    setSub(true);
-    console.log("registration submit", email, password);
-    try {
-      const { user } = await firebase
-        .auth()
-        .createUserWithEmailAndPassword(email, password);
-      await saveUser({
-        uid: user?.uid || "a",
-        displayName: user?.displayName || "b",
-        email: user?.email || "c",
-      });
-      router.push("/");
-    } catch (error) {
-      console.log(error.message);
+  const onSubmit = handleSubmit(
+    async ({ email, password, displayName }: FormData) => {
+      setSub(true);
+      console.log("registration submit", email, password, displayName);
+      try {
+        const { user } = await firebase
+          .auth()
+          .createUserWithEmailAndPassword(email, password);
+        await user?.updateProfile({ displayName: displayName });
+
+        if (user && user.uid) {
+          await saveUser({
+            uid: user.uid,
+            wishlist: [],
+            displayName: displayName,
+          });
+        } else throw new Error("Something went wrong!");
+      } catch (error) {
+        console.log(error.message);
+      } finally {
+        router.push("/");
+      }
+      setSub(false);
     }
-    setSub(false);
-  });
+  );
 
   return (
     <div className='register'>
@@ -71,6 +79,18 @@ const Register = () => {
         <div>
           <FormInput
             registerRef={{
+              ...register("displayName", { required: "Gib name" }),
+            }}
+            name='displayName'
+            type='text'
+            label='Display Name'
+          />
+          {errors.displayName ? <p>{errors?.displayName?.message}</p> : null}
+        </div>
+        <br />
+        <div>
+          <FormInput
+            registerRef={{
               ...register("password", {
                 required: "Gib Password",
                 minLength: {
@@ -82,9 +102,9 @@ const Register = () => {
                   "Must include letters and numbers",
               }),
             }}
-            label='Password'
             name='password'
             type='password'
+            label='Password'
           />
           {errors.password ? <p>{errors?.password?.message}</p> : null}
         </div>

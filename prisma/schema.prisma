@@ -11,10 +11,8 @@ generator client {
   provider = "prisma-client-js"
 }
 
-// id ? @default(cuid())
-
 model User {
   uid String @id 
-  displayName String
-  email String
+  wishlist String[]
+  displayName String @unique
 }

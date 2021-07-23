@@ -1,6 +1,8 @@
 import Link from "next/link";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import wishlist from "../../pages/api/wishlist";
 import { addItem } from "../../redux/actions/cartActions";
+import { AppState } from "../../redux/types";
 import { Product } from "../../utils/types";
 
 interface Props {
@@ -9,6 +11,24 @@ interface Props {
 
 const CollectionItem = ({ product }: Props) => {
   const dispatch = useDispatch();
+
+  const uid: string | null =
+    useSelector((state: AppState) => state.user.currentUser?.uid) || "";
+
+  const addToWishlist = async () => {
+    const response = await fetch("/api/wishlist", {
+      method: "PUT",
+      body: JSON.stringify({
+        uid: uid,
+        wishlistItem: product.id,
+      }),
+    });
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+
+    return await response.json();
+  };
 
   return (
     <div className='group h-96 w-52 flex flex-col items-center relative m-1 cursor-pointer '>
@@ -28,7 +48,7 @@ const CollectionItem = ({ product }: Props) => {
         </div>
 
         <img
-          onClick={() => alert("Added to Wishlist! (TODO)")}
+          onClick={addToWishlist}
           className='w-1/8 h-4/6 hover:bg-red-300'
           src='/heart.svg'
         />
