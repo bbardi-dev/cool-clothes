@@ -41,13 +41,13 @@ function MyApp({ Component, pageProps }: AppProps) {
         if (!firebaseUser) {
           dispatch(setCurrentUser(null));
           nookies.set(undefined, "token", "", {});
-          return;
+          return null;
         }
         const token = await firebaseUser.getIdToken();
         const user: User | null = {
           uid: firebaseUser.uid,
           wishlist: [],
-          displayName: firebaseUser.displayName || "you dun goofed",
+          displayName: firebaseUser.displayName || "ya dun goofed",
         };
         dispatch(setCurrentUser(user));
         nookies.set(undefined, "token", token, {});
