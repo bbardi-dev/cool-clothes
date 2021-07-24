@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import prisma from "../../prisma/prisma";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.method === "POST" || req.method === "PUT") {
+  if (req.method === "PUT") {
     const data = JSON.parse(req.body);
     const addedItem = await prisma.user.update({
       where: { uid: data.uid },
@@ -13,12 +13,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       },
     });
     return res.status(200).json(addedItem);
-  } else if (req.method === "GET") {
-    const data = JSON.parse(req.body);
+  }
+  if (req.method === "POST") {
+    const { uid } = JSON.parse(req.body);
 
     const wishlistItems = await prisma.user.findUnique({
       select: { wishlist: true, displayName: true },
-      where: { uid: data.uid },
+      where: { uid: uid },
     });
     return res.status(200).json(wishlistItems);
   }
