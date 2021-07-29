@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import prisma from "../../prisma/prisma";
+import { wrapper } from "../../redux/store";
 import { AppState } from "../../redux/types";
 import { Product } from "../../utils/types";
+import CollectionItem from "../../components/Collection/CollectionItem";
 
 const index = () => {
   const uid: string | null =
@@ -12,24 +15,26 @@ const index = () => {
   const [username, setUserame] = useState<string>("Guest");
 
   const getWishlistItems = async (userId: string | null) => {
-    const response = await fetch("/api/wishlist", {
-      method: "POST",
-      body: JSON.stringify({
-        uid: userId,
-      }),
-    });
-    if (!response.ok) {
-      throw new Error(response.statusText);
+    try {
+      const response = await fetch("/api/wishlist", {
+        method: "POST",
+        body: JSON.stringify({
+          uid: userId,
+        }),
+      });
+      return await response.json();
+    } catch (error) {
+      console.log(error);
     }
-
-    return await response.json();
   };
 
   useEffect(() => {
     (async () => {
       const res = await getWishlistItems(uid);
-      setUserame(res.displayName);
-      setIds(res.wishlist);
+      if (res) {
+        setUserame(res.displayName);
+        setIds(res.wishlist);
+      }
     })();
   }, [uid]);
 
@@ -38,17 +43,24 @@ const index = () => {
       itemIds.includes(product.id ?? "")
     ) ?? [];
 
+  const signedInView = (
+    <>
+      <p>Your Wishlist:</p>
+
+      <div className='flex flex-wrap justify-start items-center gap-12'>
+        {products
+          ? inWishList.map((product) => (
+              <CollectionItem key={product.id} product={product} />
+            ))
+          : null}
+      </div>
+    </>
+  );
+
   return (
     <div>
       <p>{`Hi ${username}`}</p>
-      <p>Your wishlist is:</p>
-      {inWishList &&
-        inWishList?.map((item) => (
-          <p key={item.id}>
-            <span>{item.name}</span>
-            <br />
-          </p>
-        ))}
+      {uid ? signedInView : <p>Please Sign In to view your Wishlist!</p>}
     </div>
   );
 };

@@ -2,6 +2,9 @@ import Link from "next/link";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import ShoppingBag, { CartDropdown } from "./ShoppingBag";
+import { User } from "@prisma/client";
+import { useSelector } from "react-redux";
+import { AppState } from "../redux/types";
 
 const Option = ({
   text,
@@ -43,6 +46,9 @@ const Option = ({
 };
 
 export const Header = () => {
+  const currentUser: User | null = useSelector(
+    (state: AppState) => state.user.currentUser
+  );
   return (
     <>
       <Head>
@@ -69,7 +75,11 @@ export const Header = () => {
             />
           </div>
           <div className='flex w-1/3 justify-center'>
-            <Option text='Login/Register' link='/authpage' imgURL='/user.svg' />
+            <Option
+              text={currentUser ? "Your Account" : "Login/Register"}
+              link={currentUser ? "/auth/user" : "/auth"}
+              imgURL='/user.svg'
+            />
             <Option text='Checkout' link='/checkout' imgURL='/cart.svg' />
           </div>
           <div className='flex w-1/3 justify-end'>

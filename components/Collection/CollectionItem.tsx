@@ -16,18 +16,22 @@ const CollectionItem = ({ product }: Props) => {
     useSelector((state: AppState) => state.user.currentUser?.uid) || "";
 
   const addToWishlist = async () => {
-    const response = await fetch("/api/wishlist", {
-      method: "PUT",
-      body: JSON.stringify({
-        uid: uid,
-        wishlistItem: product.id,
-      }),
-    });
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
+    if (uid) {
+      const response = await fetch("/api/wishlist", {
+        method: "PUT",
+        body: JSON.stringify({
+          uid: uid,
+          wishlistItem: product.id,
+        }),
+      });
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
 
-    return await response.json();
+      return await response.json();
+    }
+    //TODO Proper handling of not logged in user
+    return alert("Please Log In to do that!");
   };
 
   return (
