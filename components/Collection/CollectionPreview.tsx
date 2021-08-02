@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { AppState } from "../../redux/types";
 import { Category, Product } from "../../utils/types";
 import CollectionItem from "./CollectionItem";
+import AddToWishlist from "../AddToWishlist";
 
 interface Props {
   category: Category;
@@ -32,7 +33,17 @@ export default function CollectionPreview({ category }: Props) {
           </Link>
           <div className='flex flex-wrap justify-evenly'>
             {showcaseProducts.map((product) => (
-              <CollectionItem key={product.id} product={product} />
+              <CollectionItem
+                key={product.id}
+                product={product}
+                withWishlist={() => (
+                  <AddToWishlist
+                    productId={product.id}
+                    tailwindClasses='w-1/8 h-4/6 hover:bg-red-300'
+                    action='ADD'
+                  />
+                )}
+              />
             ))}
           </div>
         </div>

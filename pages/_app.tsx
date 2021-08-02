@@ -47,7 +47,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         const user: User | null = {
           uid: firebaseUser.uid,
           wishlist: [],
-          displayName: firebaseUser.displayName || "ya dun goofed",
+          displayName: firebaseUser.displayName || "User",
         };
         dispatch(setCurrentUser(user));
         nookies.set(undefined, "token", token, {});

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { AppState } from "../../../redux/types";
 import { addItem } from "../../../redux/actions/cartActions";
 import { Product } from "../../../utils/types";
+import AddToWishlist from "../../../components/AddToWishlist";
 
 const ProductDetail = ({ product }: { product: Product }) => {
   const dispatch = useDispatch();
@@ -58,7 +59,11 @@ const ProductDetail = ({ product }: { product: Product }) => {
           >
             Add to Cart
           </button>
-          <img className='w-16 h-16' src='/heart.svg' />
+          <AddToWishlist
+            productId={product.id}
+            tailwindClasses='w-16 h-16 hover:bg-red-300'
+            action='ADD'
+          />
         </div>
       </div>
     </motion.div>

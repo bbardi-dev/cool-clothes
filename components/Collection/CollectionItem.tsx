@@ -1,38 +1,17 @@
 import Link from "next/link";
-import { useDispatch, useSelector } from "react-redux";
-import wishlist from "../../pages/api/wishlist";
+import { useDispatch } from "react-redux";
 import { addItem } from "../../redux/actions/cartActions";
-import { AppState } from "../../redux/types";
 import { Product } from "../../utils/types";
+import AddToWishlist from "../AddToWishlist";
 
-interface Props {
+const CollectionItem = ({
+  product,
+  withWishlist,
+}: {
   product: Product;
-}
-
-const CollectionItem = ({ product }: Props) => {
+  withWishlist?: () => JSX.Element;
+}) => {
   const dispatch = useDispatch();
-
-  const uid: string | null =
-    useSelector((state: AppState) => state.user.currentUser?.uid) || "";
-
-  const addToWishlist = async () => {
-    if (uid) {
-      const response = await fetch("/api/wishlist", {
-        method: "PUT",
-        body: JSON.stringify({
-          uid: uid,
-          wishlistItem: product.id,
-        }),
-      });
-      if (!response.ok) {
-        throw new Error(response.statusText);
-      }
-
-      return await response.json();
-    }
-    //TODO Proper handling of not logged in user
-    return alert("Please Log In to do that!");
-  };
 
   return (
     <div className='group h-96 w-52 flex flex-col items-center relative m-1 cursor-pointer '>
@@ -51,11 +30,7 @@ const CollectionItem = ({ product }: Props) => {
           </span>
         </div>
 
-        <img
-          onClick={addToWishlist}
-          className='w-1/8 h-4/6 hover:bg-red-300'
-          src='/heart.svg'
-        />
+        {withWishlist?.()}
       </div>
 
       <button

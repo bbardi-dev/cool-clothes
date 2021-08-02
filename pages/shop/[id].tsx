@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 import { AppState } from "../../redux/types";
 import { Product } from "../../utils/types";
 import CollectionItem from "../../components/Collection/CollectionItem";
-import { useRouter } from "next/router";
+import AddToWishlist from "../../components/AddToWishlist";
 
 const Categories = () => {
   const router = useRouter();
@@ -30,7 +31,17 @@ const Categories = () => {
       <div className='flex flex-wrap justify-start items-center gap-12'>
         {products
           ? filteredByCategory.map((product) => (
-              <CollectionItem key={product.id} product={product} />
+              <CollectionItem
+                key={product.id}
+                product={product}
+                withWishlist={() => (
+                  <AddToWishlist
+                    productId={product.id}
+                    tailwindClasses='w-1/8 h-4/6 hover:bg-red-300'
+                    action='ADD'
+                  />
+                )}
+              />
             ))
           : null}
       </div>

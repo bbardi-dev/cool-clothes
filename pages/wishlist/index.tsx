@@ -5,6 +5,7 @@ import { wrapper } from "../../redux/store";
 import { AppState } from "../../redux/types";
 import { Product } from "../../utils/types";
 import CollectionItem from "../../components/Collection/CollectionItem";
+import AddToWishlist from "../../components/AddToWishlist";
 
 const index = () => {
   const uid: string | null =
@@ -50,7 +51,17 @@ const index = () => {
       <div className='flex flex-wrap justify-start items-center gap-12'>
         {products
           ? inWishList.map((product) => (
-              <CollectionItem key={product.id} product={product} />
+              <CollectionItem
+                key={product.id}
+                product={product}
+                withWishlist={() => (
+                  <AddToWishlist
+                    productId={product.id}
+                    tailwindClasses='w-1/8 h-4/6 hover:bg-red-300'
+                    action='REMOVE'
+                  />
+                )}
+              />
             ))
           : null}
       </div>

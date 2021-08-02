@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { AppState } from "../redux/types";
 import { Product } from "../utils/types";
 import CollectionItem from "../components/Collection/CollectionItem";
+import AddToWishlist from "../components/AddToWishlist";
 
 export default function Home() {
   const products: Product[] | null = useSelector(
@@ -41,7 +42,17 @@ export default function Home() {
         <div className='flex flex-col md:flex-row gap-12'>
           {products &&
             products.map((product) => (
-              <CollectionItem key={product.id} product={product} />
+              <CollectionItem
+                key={product.id}
+                product={product}
+                withWishlist={() => (
+                  <AddToWishlist
+                    productId={product.id}
+                    tailwindClasses='w-1/8 h-4/6 hover:bg-red-300'
+                    action='ADD'
+                  />
+                )}
+              />
             ))}
         </div>
       </div>
