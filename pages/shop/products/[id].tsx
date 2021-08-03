@@ -70,7 +70,7 @@ const ProductDetails = () => {
               </button>
               <WishlistIcon
                 productId={thisProduct.id}
-                tailwindClasses='w-16 h-16 hover:bg-red-300'
+                tailwindClasses='w-16 h-16'
               />
             </div>
           </div>

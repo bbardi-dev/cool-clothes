@@ -14,6 +14,19 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     });
     return res.status(200).json(addedItem);
   }
+
+  if (req.method === "DELETE") {
+    const data = JSON.parse(req.body);
+
+    const wishlistWithoutItem = await prisma.user.update({
+      where: { uid: data.uid },
+      data: {
+        wishlist: data.wishlist,
+      },
+    });
+    return res.status(200).json(wishlistWithoutItem);
+  }
+
   if (req.method === "POST") {
     const { uid } = JSON.parse(req.body);
 

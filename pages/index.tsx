@@ -35,12 +35,7 @@ export default function Home() {
               <CollectionItem
                 key={product.id}
                 product={product}
-                withWishlist={() => (
-                  <WishlistIcon
-                    productId={product.id}
-                    tailwindClasses='w-1/8 h-4/6 hover:bg-red-300'
-                  />
-                )}
+                withWishlist={() => <WishlistIcon productId={product.id} />}
               />
             ))}
         </div>
