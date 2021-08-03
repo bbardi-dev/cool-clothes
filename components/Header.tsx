@@ -55,7 +55,7 @@ export const Header = () => {
         <title>Cool Clothes 😎🌊☀</title>
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
       </Head>
-      <div className='w-full h-14 mb-5 flex items-center justify-evenly px-5'>
+      <div className='w-full h-14 mb-5 flex items-center justify-evenly px-5 z-20'>
         <div className='h-full w-1/2 flex items-center'>
           <Link href='/'>
             <a className='text-4xl font-hand'>Cool Clothes</a>

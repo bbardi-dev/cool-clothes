@@ -1,47 +1,16 @@
-import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import prisma from "../../prisma/prisma";
-import { wrapper } from "../../redux/store";
 import { AppState } from "../../redux/types";
 import { Product } from "../../utils/types";
 import CollectionItem from "../../components/Collection/CollectionItem";
-import AddToWishlist from "../../components/AddToWishlist";
+import WishlistIcon from "../../components/WishlistIcon";
 
 const index = () => {
-  const uid: string | null =
-    useSelector((state: AppState) => state.user.currentUser?.uid) || "";
   const products = useSelector((state: AppState) => state.shop.products);
-
-  const [itemIds, setIds] = useState<string[]>([]);
-  const [username, setUserame] = useState<string>("Guest");
-
-  const getWishlistItems = async (userId: string | null) => {
-    try {
-      const response = await fetch("/api/wishlist", {
-        method: "POST",
-        body: JSON.stringify({
-          uid: userId,
-        }),
-      });
-      return await response.json();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    (async () => {
-      const res = await getWishlistItems(uid);
-      if (res) {
-        setUserame(res.displayName);
-        setIds(res.wishlist);
-      }
-    })();
-  }, [uid]);
+  const user = useSelector((state: AppState) => state.user.currentUser);
 
   const inWishList: Product[] =
     products?.filter((product: Product) =>
-      itemIds.includes(product.id ?? "")
+      user?.wishlist.includes(product.id ?? "")
     ) ?? [];
 
   const signedInView = (
@@ -55,10 +24,9 @@ const index = () => {
                 key={product.id}
                 product={product}
                 withWishlist={() => (
-                  <AddToWishlist
+                  <WishlistIcon
                     productId={product.id}
                     tailwindClasses='w-1/8 h-4/6 hover:bg-red-300'
-                    action='REMOVE'
                   />
                 )}
               />
@@ -70,8 +38,8 @@ const index = () => {
 
   return (
     <div>
-      <p>{`Hi ${username}`}</p>
-      {uid ? signedInView : <p>Please Sign In to view your Wishlist!</p>}
+      <p>{`Hi ${user?.displayName ?? "Guest"}`}</p>
+      {user ? signedInView : <p>Please Sign In to view your Wishlist!</p>}
     </div>
   );
 };

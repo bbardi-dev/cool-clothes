@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { AppState } from "../../redux/types";
 import { Product } from "../../utils/types";
 import CollectionItem from "../../components/Collection/CollectionItem";
-import AddToWishlist from "../../components/AddToWishlist";
+import WishlistIcon from "../../components/WishlistIcon";
 
 const Categories = () => {
   const router = useRouter();
@@ -35,10 +35,9 @@ const Categories = () => {
                 key={product.id}
                 product={product}
                 withWishlist={() => (
-                  <AddToWishlist
+                  <WishlistIcon
                     productId={product.id}
                     tailwindClasses='w-1/8 h-4/6 hover:bg-red-300'
-                    action='ADD'
                   />
                 )}
               />

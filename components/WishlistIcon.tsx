@@ -1,19 +1,22 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { updateWishlist } from "../redux/actions/userActions";
 import { AppState } from "../redux/types";
 
 interface Props {
   productId?: string;
   tailwindClasses: string;
-  action: "ADD" | "REMOVE";
 }
 
-export default function AddToWishlist({
-  productId,
-  tailwindClasses,
-  action,
-}: Props) {
+export default function AddToWishlist({ productId, tailwindClasses }: Props) {
+  const dispatch = useDispatch();
   const uid: string | null =
     useSelector((state: AppState) => state.user.currentUser?.uid) || "";
+
+  const wishlist = useSelector(
+    (state: AppState) => state.user.currentUser?.wishlist
+  );
+
+  const inWishList = wishlist?.includes(productId || "");
 
   const addToWishlist = async () => {
     if (!productId) return alert("Something went wrong, try again!");
@@ -30,10 +33,11 @@ export default function AddToWishlist({
         throw new Error(response.statusText);
       }
 
-      return await response.json();
+      const userData = await response.json();
+      dispatch(updateWishlist([wishlist, ...userData.wishlist]));
     }
     //TODO Proper handling of not logged in user
-    return alert("Please Log In to do that!");
+    else alert("Please Log In to do that!");
   };
 
   const removeFromWishlist = () => {
@@ -42,7 +46,7 @@ export default function AddToWishlist({
 
   return (
     <img
-      onClick={action === "ADD" ? addToWishlist : removeFromWishlist}
+      onClick={inWishList ? removeFromWishlist : addToWishlist}
       className={tailwindClasses}
       src='/heart.svg'
     />

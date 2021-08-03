@@ -1,10 +1,9 @@
 import Link from "next/link";
 import { useSelector } from "react-redux";
-import { motion } from "framer-motion";
 import { AppState } from "../redux/types";
 import { Product } from "../utils/types";
 import CollectionItem from "../components/Collection/CollectionItem";
-import AddToWishlist from "../components/AddToWishlist";
+import WishlistIcon from "../components/WishlistIcon";
 
 export default function Home() {
   const products: Product[] | null = useSelector(
@@ -14,16 +13,7 @@ export default function Home() {
       ) || null
   );
   return (
-    <motion.main
-      exit={{ opacity: 0 }}
-      initial={{ y: 60, opacity: 0 }}
-      animate={{
-        y: 0,
-        opacity: 1,
-        transition: { duration: 0.6, ease: "easeIn" },
-      }}
-      className='flex flex-col justify-center items-center h-full w-full md:w-10/12 mx-auto mt-24 gap-36'
-    >
+    <main className='flex flex-col justify-center items-center h-full w-full md:w-10/12 mx-auto mt-24 gap-36'>
       <div className='flex flex-col justify-items-center items-center gap-24 text-center'>
         <h1 className='italic text-7xl'>Do you want to look...</h1>
         <span className='cool font-hand text-9xl'>Cool?</span>
@@ -46,16 +36,15 @@ export default function Home() {
                 key={product.id}
                 product={product}
                 withWishlist={() => (
-                  <AddToWishlist
+                  <WishlistIcon
                     productId={product.id}
                     tailwindClasses='w-1/8 h-4/6 hover:bg-red-300'
-                    action='ADD'
                   />
                 )}
               />
             ))}
         </div>
       </div>
-    </motion.main>
+    </main>
   );
 }

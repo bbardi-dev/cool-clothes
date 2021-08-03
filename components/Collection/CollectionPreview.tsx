@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { AppState } from "../../redux/types";
 import { Category, Product } from "../../utils/types";
 import CollectionItem from "./CollectionItem";
-import AddToWishlist from "../AddToWishlist";
+import WishlistIcon from "../WishlistIcon";
 
 interface Props {
   category: Category;
@@ -37,10 +37,9 @@ export default function CollectionPreview({ category }: Props) {
                 key={product.id}
                 product={product}
                 withWishlist={() => (
-                  <AddToWishlist
+                  <WishlistIcon
                     productId={product.id}
                     tailwindClasses='w-1/8 h-4/6 hover:bg-red-300'
-                    action='ADD'
                   />
                 )}
               />

@@ -3,6 +3,7 @@ import { HYDRATE } from "next-redux-wrapper";
 import { Category, Product } from "../utils/types";
 
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
+export const UPDATE_WISHLIST = "UPDATE_WISHLIST";
 export const TOGGLE_CART = "TOGGLE_CART";
 export const ADD_ITEM = "ADD_ITEM";
 export const REMOVE_ITEM = "REMOVE_ITEM";
@@ -13,6 +14,7 @@ export const UPDATE_CATEGORIES = "UPDATE_CATEGORIES";
 export type ActionTypes =
   | { type: typeof HYDRATE; payload: any }
   | { type: typeof SET_CURRENT_USER; payload: User | null }
+  | { type: typeof UPDATE_WISHLIST; payload: string[] }
   | { type: typeof TOGGLE_CART }
   | { type: typeof ADD_ITEM; payload: Product }
   | { type: typeof REMOVE_ITEM; payload: Product }

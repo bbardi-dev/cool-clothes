@@ -2,7 +2,7 @@ import App from "next/app";
 import type { AppProps, AppContext } from "next/app";
 import { Router } from "next/router";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { User } from "@prisma/client";
 import firebase from "firebase";
 import nookies from "nookies";
@@ -14,8 +14,10 @@ import "tailwindcss/tailwind.css";
 import "../layout.css";
 import firebaseClient from "../utils/firebase/firebaseClient";
 import commerce from "../utils/CommerceJS/commerce";
+import prisma from "../prisma/prisma";
+import { AppState } from "../redux/types";
 import { wrapper } from "../redux/store";
-import { setCurrentUser } from "../redux/actions/userActions";
+import { setCurrentUser, updateWishlist } from "../redux/actions/userActions";
 import { updateCategories, updateProducts } from "../redux/actions/shopActions";
 import { Header } from "../components/Header";
 
@@ -32,7 +34,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   Router.events.on("routeChangeError", () => NProgress.done());
 
   firebaseClient();
+
   const dispatch = useDispatch();
+
+  const uid: string | null =
+    useSelector((state: AppState) => state.user.currentUser?.uid) || "";
 
   useEffect(() => {
     const unsubscribe = firebase
@@ -56,27 +62,50 @@ function MyApp({ Component, pageProps }: AppProps) {
     return () => unsubscribe();
   }, []);
 
+  const getWishlistItems = async (userId: string | null) => {
+    try {
+      const response = await fetch("/api/wishlist", {
+        method: "POST",
+        body: JSON.stringify({
+          uid: userId,
+        }),
+      });
+      return await response.json();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    (async () => {
+      const res = await getWishlistItems(uid);
+      if (res) {
+        dispatch(updateWishlist(res.wishlist));
+      }
+    })();
+  }, [uid]);
+
   return (
     <>
       <Header />
-      <motion.div
-        exit={{ opacity: 0 }}
-        initial={{ y: 60, opacity: 0 }}
-        animate={{
-          y: 0,
-          opacity: 1,
-          transition: { duration: 0.6, ease: "easeIn" },
-        }}
-      >
-        <Component {...pageProps} />
-      </motion.div>
+      <AnimatePresence exitBeforeEnter>
+        <motion.div
+          key={new Date().getMilliseconds()}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          style={{ width: "100%", height: "100%" }}
+        >
+          <Component {...pageProps} />
+        </motion.div>
+      </AnimatePresence>
     </>
   );
 }
 
 MyApp.getInitialProps = async (appContext: AppContext) => {
   const appProps = await App.getInitialProps(appContext);
-  const appState = appContext.ctx.store.getState();
+  const appState: AppState = appContext.ctx.store.getState();
 
   if (!appState.shop.products) {
     const { data: products } = await commerce.products.list({ limit: 200 });

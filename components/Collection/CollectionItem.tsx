@@ -2,7 +2,6 @@ import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../redux/actions/cartActions";
 import { Product } from "../../utils/types";
-import AddToWishlist from "../AddToWishlist";
 
 const CollectionItem = ({
   product,
