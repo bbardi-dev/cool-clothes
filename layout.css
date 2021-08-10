@@ -33,9 +33,9 @@ body {
   position: absolute;
   background-color: #1f2937;
   width: 5px;
-  height: 120%;
-  bottom: -5%;
-  left: 90%;
+  height: 90%;
+  bottom: 0;
+  left: 200%;
   border-radius: 10px;
 }
 

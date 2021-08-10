@@ -31,7 +31,7 @@ export function CartDropdown() {
   return (
     <div
       style={{ display: !hidden ? "flex" : "none" }}
-      className='absolute w-64 h-96 flex flex-col p-2 border-2 border-gray-800 bg-white top-16 right-1 z-10'
+      className='absolute w-64 h-96 flex flex-col p-2 border-2 rounded-md border-gray-800 bg-white top-16 right-1 z-10'
     >
       <div className='h-80 flex flex-col overflow-scroll my-2'>
         {cartItems.length ? (
@@ -46,7 +46,7 @@ export function CartDropdown() {
       </div>
       <button
         onClick={() => dispatch(toggleCart())}
-        className='mt-auto border-2 bg-gray-800 text-white border-none p-1'
+        className='mt-auto border-2 bg-gray-800 text-white border-none p-1 rounded-md'
       >
         <Link href='/checkout'>GO TO CHECKOUT</Link>
       </button>
