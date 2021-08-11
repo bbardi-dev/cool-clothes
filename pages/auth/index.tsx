@@ -2,10 +2,10 @@ import { User } from "@prisma/client";
 import { useSelector } from "react-redux";
 import Register from "../../components/Auth/Register";
 import SignIn from "../../components/Auth/SignIn";
-import { AppState } from "../../redux/types";
+import { AppState, ReduxUser } from "../../redux/types";
 
 const index = () => {
-  const currentUser: User | null = useSelector(
+  const currentUser: ReduxUser | null = useSelector(
     (state: AppState) => state.user.currentUser
   );
 

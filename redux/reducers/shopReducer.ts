@@ -5,12 +5,12 @@ import {
   UPDATE_PRODUCTS,
 } from "../types";
 
-const INITIAL_STATE: ShopState = {
+const initialState: ShopState = {
   categories: null,
   products: null,
 };
 
-const shopReducer = (state = INITIAL_STATE, action: ActionTypes) => {
+const shopReducer = (state = initialState, action: ActionTypes) => {
   switch (action.type) {
     case UPDATE_PRODUCTS:
       return {

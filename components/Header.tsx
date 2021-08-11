@@ -4,8 +4,8 @@ import { useRouter } from "next/router";
 import ShoppingBag, { CartDropdown } from "./ShoppingBag";
 import { User } from "@prisma/client";
 import { useSelector } from "react-redux";
-import { AppState } from "../redux/types";
-import { useState } from "react";
+import { AppState, ReduxUser } from "../redux/types";
+import { useEffect, useState } from "react";
 
 const Option = ({
   text,
@@ -49,9 +49,14 @@ const Option = ({
 export const Header = () => {
   const [hidden, setHidden] = useState(true);
 
-  const currentUser: User | null = useSelector(
+  const currentUser: ReduxUser | null = useSelector(
     (state: AppState) => state.user.currentUser
   );
+
+  useEffect(() => {
+    window.addEventListener("resize", () => setHidden(true));
+  }, []);
+
   return (
     <>
       <Head>
@@ -60,16 +65,22 @@ export const Header = () => {
       </Head>
 
       <nav>
-        <div className='max-w-screen-2xl mx-auto pt-0.5 mb-4 px-4'>
+        <div
+          className={`max-w-screen-2xl mx-auto pt-0.5 px-4 ${
+            hidden ? "" : "bg-gray-800 text-blue-100 "
+          }`}
+        >
           <div className='flex items-center justify-between'>
             {/* Main Logo */}
-            <div className='flex'>
-              <Link href='/'>
-                <a className='text-2xl md:text-3xl lg:text-4xl font-hand'>
-                  Cool Clothes
-                </a>
-              </Link>
-            </div>
+            {hidden ? (
+              <div className='flex'>
+                <Link href='/'>
+                  <a className='text-3xl lg:text-4xl font-hand'>Cool Clothes</a>
+                </Link>
+              </div>
+            ) : (
+              <div />
+            )}
 
             {/* Navigation */}
             <div className='hidden md:flex space-x-12'>
@@ -107,30 +118,83 @@ export const Header = () => {
 
             {/* Mobile Button */}
 
-            <div className='md:hidden flex items-center'>
-              <button onClick={() => setHidden(!hidden)}>OwO</button>
+            <div className='md:hidden mb-2 flex items-center space-x-2'>
+              {hidden ? <ShoppingBag /> : <div />}
+              <button
+                className='focus:outline-none'
+                onClick={() => setHidden(!hidden)}
+              >
+                {hidden ? (
+                  <svg
+                    fill='none'
+                    height='36'
+                    stroke={`${hidden ? "#1F2937" : "#DBEAFE"}`}
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth='2'
+                    viewBox='0 0 24 24'
+                    width='36'
+                    xmlns='http://www.w3.org/2000/svg'
+                  >
+                    <line x1='3' x2='21' y1='12' y2='12' />
+                    <line x1='3' x2='21' y1='6' y2='6' />
+                    <line x1='3' x2='21' y1='18' y2='18' />
+                  </svg>
+                ) : (
+                  <svg
+                    fill='none'
+                    height='36'
+                    stroke='#DBEAFE'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth='2'
+                    viewBox='0 0 24 24'
+                    width='36'
+                    xmlns='http://www.w3.org/2000/svg'
+                  >
+                    <line x1='18' x2='6' y1='6' y2='18' />
+                    <line x1='6' x2='18' y1='6' y2='18' />
+                  </svg>
+                )}
+              </button>
             </div>
           </div>
         </div>
 
         {/* Mobile Menu */}
 
-        <div className={hidden ? "hidden" : ""}>
-          <Option text='Home' link='/' textStyle='text-xl font-semibold px-1' />
+        <div
+          className={`rounded-sm p-2 mb-3 flex flex-col items-center ${
+            hidden ? "hidden" : "bg-gray-800 "
+          }`}
+        >
+          <Option
+            text='Home'
+            link='/'
+            textStyle='font-semibold text-blue-100'
+          />
           <Option
             text='Shop'
             link='/shop'
-            textStyle='text-xl font-semibold px-1'
+            textStyle='font-semibold text-blue-100'
           />
 
           <Option
             text={currentUser ? "Your Account" : "Login/Register"}
             link={currentUser ? "/auth/user" : "/auth"}
+            textStyle='font-semibold text-blue-100'
           />
-          <Option text='Checkout' link='/checkout' />
+          <Option
+            text='Checkout'
+            link='/checkout'
+            textStyle='font-semibold text-blue-100'
+          />
 
-          <ShoppingBag />
-          <Option link='/wishlist' text='Wishlist' />
+          <Option
+            link='/wishlist'
+            text='Wishlist'
+            textStyle='font-semibold text-blue-100'
+          />
         </div>
       </nav>
     </>

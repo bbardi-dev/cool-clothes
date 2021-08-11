@@ -7,13 +7,13 @@ import { useRouter } from "next/dist/client/router";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentUser } from "../../redux/actions/userActions";
 import { User } from "@prisma/client";
-import { AppState } from "../../redux/types";
+import { AppState, ReduxUser } from "../../redux/types";
 
 const user = () => {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const currentUser: User | null = useSelector(
+  const currentUser: ReduxUser | null = useSelector(
     (state: AppState) => state.user.currentUser
   );
 

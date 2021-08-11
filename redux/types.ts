@@ -13,7 +13,7 @@ export const UPDATE_CATEGORIES = "UPDATE_CATEGORIES";
 
 export type ActionTypes =
   | { type: typeof HYDRATE; payload: any }
-  | { type: typeof SET_CURRENT_USER; payload: User | null }
+  | { type: typeof SET_CURRENT_USER; payload: ReduxUser | null }
   | { type: typeof UPDATE_WISHLIST; payload: string[] }
   | { type: typeof TOGGLE_CART }
   | { type: typeof ADD_ITEM; payload: Product }
@@ -22,8 +22,10 @@ export type ActionTypes =
   | { type: typeof UPDATE_PRODUCTS; payload: Product[] }
   | { type: typeof UPDATE_CATEGORIES; payload: Category[] };
 
+export type ReduxUser = Partial<User>;
+
 export interface UserState {
-  currentUser: User | null;
+  currentUser: ReduxUser | null;
 }
 export interface ShopState {
   categories: Category[] | null;

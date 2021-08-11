@@ -10,7 +10,7 @@ const index = () => {
 
   const inWishList: Product[] =
     products?.filter((product: Product) =>
-      user?.wishlist.includes(product.id ?? "")
+      user?.wishlist?.includes(product.id ?? "")
     ) ?? [];
 
   const signedInView = (
