@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useDispatch } from "react-redux";
 import {
   addItem,
@@ -13,36 +14,39 @@ interface Props {
 const CheckoutItem = ({ item }: Props) => {
   const dispatch = useDispatch();
   return (
-    <div className='w-full h-auto flex border-b-2 p-1 border-gray-800 items-center'>
-      <div className='w-2/12 pr-4 '>
+    <div className='grid grid-cols-5 grid-rows-1 text-center items-center text-lg md:text-2xl font-semibold border-b-2 border-gray-800 p-2'>
+      <div className='flex justify-center'>
         <img
           src={item.media?.source}
           alt='item'
-          className='w-full h-full rounded-md'
+          className='w-8/12 rounded-md'
         />
       </div>
-      <span className='w-2/12 text-lg'>{item.name}</span>
-      <span className='w-2/12 text-lg font-semibold'>
-        {item.price?.formatted_with_symbol}
-      </span>
-      <span className='w-2/12  flex '>
+
+      <div>
+        <Link href={`/shop/products/${item.id}`} passHref>
+          {item.name}
+        </Link>
+      </div>
+      <div>{item.price?.formatted_with_symbol}</div>
+      <div className='flex justify-center text-4xl'>
         <div
-          className='cursor-pointer text-2xl'
+          className='cursor-pointer '
           onClick={() => dispatch(removeItem(item))}
         >
           &#10094;
         </div>
-        <span className='my-0 mx-3 text-2xl'>{item.quantity}</span>
+        <span className='px-2'>{item.quantity}</span>
         <div
-          className='cursor-pointer text-2xl'
+          className='cursor-pointer '
           onClick={() => dispatch(addItem(item))}
         >
           &#10095;
         </div>
-      </span>
+      </div>
       <div
         onClick={() => dispatch(removeItemFromCart(item))}
-        className='w-2/12 pl-4 cursor-pointer text-2xl '
+        className='cursor-pointer text-4xl'
       >
         &#10005;
       </div>

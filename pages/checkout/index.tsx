@@ -18,34 +18,22 @@ const index = () => {
   //TODO probably change this layout to GRID
 
   return (
-    <div className=' w-1/2 h-screen flex flex-col gap-4 items-center mt-14 mb-0 mx-auto'>
-      <div className='w-full h-10 flex justify-between border-b-4 border-gray-800'>
-        <div className='w-3/12'>
-          <span>Product</span>
-        </div>
-        <div className='w-3/12'>
-          <span>Description</span>
-        </div>
-        <div className='w-3/12'>
-          <span>Quantity</span>
-        </div>
-        <div className='w-3/12'>
-          <span>Price</span>
-        </div>
-        <div className='w-3/12'>
-          <span>Remove</span>
-        </div>
+    <div className='flex flex-col gap-2 items-center'>
+      <div className='w-full grid grid-cols-5 border-b-8 border-gray-800 text-center text-lg md:text-4xl'>
+        <div>Product</div>
+        <div>Description</div>
+        <div>Price</div>
+        <div>Quantity</div>
+        <div>Remove</div>
       </div>
       {cartItems.length > 0 ? (
         cartItems.map((cartItem) => (
           <CheckoutItem key={cartItem.id} item={cartItem} />
         ))
       ) : (
-        <p className='text-4xl'>No items in Cart</p>
+        <p className='text-2xl'>No items in Cart</p>
       )}
-      <div>
-        <span>TOTAL: ${totalValue.toFixed(2)}</span>
-      </div>
+      <div className='text-3xl'>TOTAL: ${totalValue.toFixed(2)}</div>
     </div>
   );
 };
