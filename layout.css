@@ -25,6 +25,10 @@ body {
   background: #1f2937;
 }
 
+img {
+  max-width: 100%;
+}
+
 .dash-border {
   position: relative;
 }
@@ -78,4 +82,19 @@ body {
 #nprogress .bar {
   background: #29d;
   height: 5px;
+}
+
+.auth-left {
+  background: url("./public/shopping.jpg") no-repeat center;
+  background-size: cover;
+}
+
+.auth-page {
+  height: 88vh;
+}
+
+@media (max-width: 1023px) {
+  .auth-page {
+    height: 100%;
+  }
 }

@@ -14,7 +14,6 @@ import "tailwindcss/tailwind.css";
 import "../layout.css";
 import firebaseClient from "../utils/firebase/firebaseClient";
 import commerce from "../utils/CommerceJS/commerce";
-import prisma from "../prisma/prisma";
 import { AppState } from "../redux/types";
 import { wrapper } from "../redux/store";
 import { setCurrentUser, updateWishlist } from "../redux/actions/userActions";
@@ -94,7 +93,6 @@ function MyApp({ Component, pageProps }: AppProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          // style={{ width: "100%", height: "100%" }}
           className='max-w-screen-2xl h-full mx-auto px-4 mt-12'
         >
           <Component {...pageProps} />

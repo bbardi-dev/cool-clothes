@@ -38,7 +38,7 @@ const Register = () => {
   const onSubmit = handleSubmit(
     async ({ email, password, displayName }: FormData) => {
       setSub(true);
-      console.log("registration submit", email, password, displayName);
+
       try {
         const { user } = await firebase
           .auth()
@@ -62,56 +62,54 @@ const Register = () => {
   );
 
   return (
-    <div className='register'>
-      <h2 className='font-semibold text-2xl'>Register an Account</h2>
-      <br />
-      <form onSubmit={onSubmit}>
-        <div>
-          <FormInput
-            registerRef={{ ...register("email", { required: "Gib email" }) }}
-            name='email'
-            type='email'
-            label='Email'
-          />
-          {errors.email ? <p>{errors?.email?.message}</p> : null}
-        </div>
-        <br />
-        <div>
-          <FormInput
-            registerRef={{
-              ...register("displayName", { required: "Gib name" }),
-            }}
-            name='displayName'
-            type='text'
-            label='Display Name'
-          />
-          {errors.displayName ? <p>{errors?.displayName?.message}</p> : null}
-        </div>
-        <br />
-        <div>
-          <FormInput
-            registerRef={{
-              ...register("password", {
-                required: "Gib Password",
-                minLength: {
-                  value: 8,
-                  message: "Password must be 8 characters or more",
-                },
-                validate: (val) =>
-                  [/[a-z]/, /[0-9]/].every((pattern) => pattern.test(val)) ||
-                  "Must include letters and numbers",
-              }),
-            }}
-            name='password'
-            type='password'
-            label='Password'
-          />
-          {errors.password ? <p>{errors?.password?.message}</p> : null}
-        </div>
-        <br />
+    <div className='w-full flex flex-col items-center gap-4 text-xl'>
+      <h2 className='text-4xl  mb-2'>Register an Account</h2>
+
+      <form className='w-3/4 flex flex-col gap-4 p-2' onSubmit={onSubmit}>
+        <FormInput
+          registerRef={{
+            ...register("email", {
+              required: "Need a valid email address",
+            }),
+          }}
+          name='email'
+          type='email'
+          label='Email'
+          errorMessage={errors?.email?.message}
+        />
+
+        <FormInput
+          registerRef={{
+            ...register("displayName", { required: "Username required" }),
+          }}
+          name='displayName'
+          type='text'
+          label='Display Name'
+          errorMessage={errors?.displayName?.message}
+        />
+
+        <FormInput
+          registerRef={{
+            ...register("password", {
+              required: "Password required",
+              minLength: {
+                value: 8,
+                message: "Password must be 8 characters or more",
+              },
+              validate: (val) =>
+                [/[a-z]/, /[0-9]/].every((pattern) => pattern.test(val)) ||
+                "Must include letters and numbers",
+            }),
+          }}
+          name='password'
+          type='password'
+          label='Password'
+          errorMessage={errors?.password?.message}
+        />
+
         <input
           type='submit'
-          className='rounded py-1 px-3 font-bold text-gray-50 bg-indigo-500'
+          className='bg-green-400 p-3 mt-8 text-2xl'
           value={"Register"}
           disabled={submitting}
         />

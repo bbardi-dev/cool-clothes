@@ -33,44 +33,42 @@ const SignIn = () => {
   });
 
   return (
-    <div className='sign-in'>
-      <h2 className='font-semibold text-2xl'>Sign In</h2>
-      <br />
+    <div className='max-w-3/4 flex flex-col items-center gap-4 text-xl hidden'>
+      <h2 className=''>Sign In</h2>
+
       <form onSubmit={onSubmit}>
-        <div>
-          <FormInput
-            registerRef={{ ...register("email", { required: "Gib email" }) }}
-            name='email'
-            type='email'
-            label='Email'
-          />
-          {errors.email ? <p>{errors?.email?.message}</p> : null}
-        </div>
-        <br />
-        <div>
-          <FormInput
-            registerRef={{
-              ...register("password", {
-                required: "Gib Password",
-                minLength: {
-                  value: 8,
-                  message: "Password must be 8 characters or more",
-                },
-                validate: (val) =>
-                  [/[a-z]/, /[0-9]/].every((pattern) => pattern.test(val)) ||
-                  "Must include letters and numbers",
-              }),
-            }}
-            label='Password'
-            name='password'
-            type='password'
-          />
-          {errors.password ? <p>{errors?.password?.message}</p> : null}
-        </div>
-        <br />
+        <FormInput
+          registerRef={{
+            ...register("email", { required: "Need a valid email address" }),
+          }}
+          name='email'
+          type='email'
+          label='Email'
+          errorMessage={errors?.email?.message}
+        />
+
+        <FormInput
+          registerRef={{
+            ...register("password", {
+              required: "Password Required",
+              minLength: {
+                value: 8,
+                message: "Password must be 8 characters or more",
+              },
+              validate: (val) =>
+                [/[a-z]/, /[0-9]/].every((pattern) => pattern.test(val)) ||
+                "Must include letters and numbers",
+            }),
+          }}
+          label='Password'
+          name='password'
+          type='password'
+          errorMessage={errors?.password?.message}
+        />
+
         <input
           type='submit'
-          className='rounded py-1 px-3 font-bold text-gray-50 bg-green-500'
+          className=''
           value={"Log In"}
           disabled={submitting}
         />

@@ -28,10 +28,7 @@ const user = () => {
   if (!currentUser) {
     return (
       <>
-        <button
-          className='bg-purple-900 text-pink-50 p-3 rounded-md m-2'
-          onClick={() => router.push("/auth")}
-        >
+        <button className='' onClick={() => router.push("/auth")}>
           Please Log In to view this page!
         </button>
       </>
@@ -40,35 +37,13 @@ const user = () => {
 
   return (
     <div>
-      <p>{`Welcome O, ${currentUser.displayName}`}</p>
+      <p>{`Welcome back, ${currentUser.displayName}!`}</p>
       <br />
-      <button onClick={signOut}>Sign Out</button>
+      <button className='' onClick={signOut}>
+        Sign Out
+      </button>
     </div>
   );
 };
-
-// export const getServerSideProps: GetServerSideProps = async (ctx) => {
-//   try {
-//     const cookies = nookies.get(ctx);
-
-//     const token = await verifyIdToken(cookies.token);
-
-//     const { uid, email } = token;
-//     return {
-//       props: {
-//         session: {
-//           uid,
-//           email,
-//         },
-//       },
-//     };
-//   } catch (error) {
-//     return {
-//       props: {
-//         error: "Unauthorized request",
-//       },
-//     };
-//   }
-// };
 
 export default user;
