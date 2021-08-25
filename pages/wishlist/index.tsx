@@ -15,9 +15,11 @@ const index = () => {
 
   const signedInView = (
     <>
-      <p>Your Wishlist:</p>
+      <p className='text-center text-4xl m-10 italic border-b-4 border-yellow-300 self-center w-1/5'>
+        Your Wishlist:
+      </p>
 
-      <div className='flex flex-wrap justify-start items-center gap-12'>
+      <div className='gridding'>
         {products
           ? inWishList.map((product) => (
               <CollectionItem
@@ -32,9 +34,14 @@ const index = () => {
   );
 
   return (
-    <div>
-      <p>{`Hi ${user?.displayName ?? "Guest"}`}</p>
-      {user ? signedInView : <p>Please Sign In to view your Wishlist!</p>}
+    <div className='w-full h-full flex flex-col'>
+      {user ? (
+        signedInView
+      ) : (
+        <p className='text-center text-4xl'>
+          Please Sign In to view your Wishlist!
+        </p>
+      )}
     </div>
   );
 };

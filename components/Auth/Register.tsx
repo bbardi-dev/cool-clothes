@@ -109,7 +109,7 @@ const Register = () => {
 
         <input
           type='submit'
-          className='bg-green-400 p-3 mt-8 text-2xl'
+          className='bg-green-400 text-gray-800 p-3 mt-8 text-2xl'
           value={"Register"}
           disabled={submitting}
         />

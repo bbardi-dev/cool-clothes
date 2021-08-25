@@ -17,7 +17,7 @@ export const FormInput = ({
       </label>
 
       <input
-        className='focus:outline-none bg-transparent border-2 border-white rounded-sm bg-white p-1 focus:border-blue-600 w-full h-full'
+        className='focus:outline-none bg-transparent border-2 border-white rounded-sm bg-white p-1 focus:border-indigo-600 w-full h-full'
         {...registerRef}
         {...otherProps}
       />

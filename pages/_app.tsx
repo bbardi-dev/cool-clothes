@@ -93,7 +93,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className='max-w-screen-2xl h-full mx-auto px-4 mt-12'
+          className='max-w-screen-2xl h-auto mx-auto p-4'
         >
           <Component {...pageProps} />
         </motion.div>

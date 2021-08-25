@@ -18,8 +18,8 @@ const index = () => {
   //TODO probably change this layout to GRID
 
   return (
-    <div className='flex flex-col gap-2 items-center'>
-      <div className='w-full grid grid-cols-5 border-b-8 border-gray-800 text-center text-lg md:text-4xl'>
+    <div className='flex flex-col gap-6 items-center mt-12'>
+      <div className='w-full grid grid-cols-5 border-b-4 border-yellow-300 text-center text-lg md:text-4xl'>
         <div>Product</div>
         <div>Description</div>
         <div>Price</div>

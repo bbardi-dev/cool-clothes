@@ -17,25 +17,16 @@ const ProductDetails = () => {
     products?.filter((product: Product) => product.id === id)[0] ?? null;
 
   return (
-    <div className='flex flex-col w-full h-screen items-center justify-center gap-12'>
+    <div className='h-screen flex flex-col items-center justify-center gap-12'>
       {thisProduct ? (
-        <motion.div
-          exit={{ opacity: 0 }}
-          initial={{ y: 60, opacity: 0 }}
-          animate={{
-            y: 0,
-            opacity: 1,
-            transition: { duration: 0.6, ease: "easeIn" },
-          }}
-          className='h-4/6 w-full flex gap-12 p-6'
-        >
-          <div className=' h-full w-1/2'>
+        <div className='h-5/6 grid grid-rows-2 md:grid-cols-2 md:grid-rows-1 gap-20'>
+          <div>
             <div
               className='w-full h-full bg-contain bg-no-repeat bg-center'
               style={{ backgroundImage: `url(${thisProduct?.media?.source})` }}
             />
           </div>
-          <div className='h-full w-1/2 flex flex-col gap-6'>
+          <div className='flex flex-col gap-6'>
             <h1
               className='font-light text-7xl'
               dangerouslySetInnerHTML={{ __html: thisProduct?.name || "" }}
@@ -74,12 +65,12 @@ const ProductDetails = () => {
               />
             </div>
           </div>
-        </motion.div>
+        </div>
       ) : (
         "Something went wrong!"
       )}
       <Link href='/shop'>
-        <a className='text-2xl'> &#10094; Back to Shop</a>
+        <a className='text-4xl'> &#10094; Back to Shop</a>
       </Link>
     </div>
   );

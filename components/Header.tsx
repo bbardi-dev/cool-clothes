@@ -99,7 +99,7 @@ export const Header = () => {
               <div className='dash-border' />
               <div className='flex md:space-x-6 lg:space-x-2 '>
                 <Option
-                  text={currentUser ? "Your Account" : "Login/Register"}
+                  text={currentUser ? "Your Account" : "Sign In/Register"}
                   link={currentUser ? "/auth/user" : "/auth"}
                   imgURL='/user.svg'
                 />
@@ -180,7 +180,7 @@ export const Header = () => {
           />
 
           <Option
-            text={currentUser ? "Your Account" : "Login/Register"}
+            text={currentUser ? "Your Account" : "Sign In/Register"}
             link={currentUser ? "/auth/user" : "/auth"}
             textStyle='font-semibold text-blue-100'
           />

@@ -36,10 +36,12 @@ const user = () => {
   }
 
   return (
-    <div>
-      <p>{`Welcome back, ${currentUser.displayName}!`}</p>
-      <br />
-      <button className='' onClick={signOut}>
+    <div className='w-full h-screen flex flex-col items-center justify-evenly p-2'>
+      <p className='text-7xl font-hand text-center'>{`Welcome back, ${currentUser.displayName}!`}</p>
+      <button
+        className='bg-pink-400 p-6 mt-8 text-6xl rounded-sm'
+        onClick={signOut}
+      >
         Sign Out
       </button>
     </div>

@@ -33,10 +33,10 @@ const SignIn = () => {
   });
 
   return (
-    <div className='max-w-3/4 flex flex-col items-center gap-4 text-xl hidden'>
-      <h2 className=''>Sign In</h2>
+    <div className='w-full flex flex-col items-center gap-4 text-xl'>
+      <h2 className='text-4xl  mb-2'>Sign In</h2>
 
-      <form onSubmit={onSubmit}>
+      <form className='w-3/4 flex flex-col gap-4 p-2' onSubmit={onSubmit}>
         <FormInput
           registerRef={{
             ...register("email", { required: "Need a valid email address" }),
@@ -68,7 +68,7 @@ const SignIn = () => {
 
         <input
           type='submit'
-          className=''
+          className='bg-green-400 text-gray-800 p-3 mt-8 text-2xl'
           value={"Log In"}
           disabled={submitting}
         />

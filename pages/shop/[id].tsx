@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import { motion } from "framer-motion";
 import { AppState } from "../../redux/types";
 import { Product } from "../../utils/types";
 import CollectionItem from "../../components/Collection/CollectionItem";
@@ -18,17 +17,8 @@ const Categories = () => {
     ) ?? [];
 
   return (
-    <motion.div
-      exit={{ opacity: 0 }}
-      initial={{ y: 60, opacity: 0 }}
-      animate={{
-        y: 0,
-        opacity: 1,
-        transition: { duration: 0.6, ease: "easeIn" },
-      }}
-      className='flex flex-col w-full h-screen items-center justify-evenly gap-6'
-    >
-      <div className='flex flex-wrap justify-start items-center gap-12'>
+    <div className='flex flex-col gap-10'>
+      <div className='gridding'>
         {products
           ? filteredByCategory.map((product) => (
               <CollectionItem
@@ -40,9 +30,9 @@ const Categories = () => {
           : null}
       </div>
       <Link href='/shop' passHref>
-        <a className='text-2xl'> &#10094; Back to Shop</a>
+        <a className='text-4xl self-center'> &#10094; Back to Shop</a>
       </Link>
-    </motion.div>
+    </div>
   );
 };
 
