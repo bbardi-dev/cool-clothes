@@ -1,6 +1,4 @@
 import Link from "next/link";
-import { useDispatch } from "react-redux";
-import { addItem } from "../../redux/actions/cartActions";
 import { Product } from "../../utils/types";
 
 const CollectionItem = ({
@@ -10,13 +8,11 @@ const CollectionItem = ({
   product: Product;
   withWishlist?: () => JSX.Element;
 }) => {
-  const dispatch = useDispatch();
-
   return (
-    <div className='group h-96 w-52 flex flex-col items-center relative m-1 cursor-pointer '>
+    <div className='group h-96 w-52 flex flex-col items-center relative m-1 '>
       <Link href={`/shop/products/${product.id}`} passHref>
         <a
-          className='hover:opacity-75 w-full h-5/6 bg-cover bg-center mb-1.5 rounded-md'
+          className='hover:opacity-75 w-full h-5/6 bg-cover bg-center mb-1.5 rounded-sm cursor-pointer'
           style={{ backgroundImage: `url(${product.media?.source})` }}
         />
       </Link>
@@ -31,13 +27,6 @@ const CollectionItem = ({
 
         {withWishlist?.()}
       </div>
-
-      <button
-        onClick={() => dispatch(addItem(product))}
-        className='outline-none opacity-0 group-hover:opacity-95 w-6/12 absolute top-60 bg-gray-800 text-white hover:bg-white hover:text-gray-800 py-2 rounded-md text-base font-regular'
-      >
-        Add to Cart
-      </button>
     </div>
   );
 };

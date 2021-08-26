@@ -15,7 +15,7 @@ const index = () => {
 
   const signedInView = (
     <>
-      <p className='text-center text-4xl m-10 italic border-b-4 border-yellow-300 self-center w-1/5'>
+      <p className='text-center text-4xl m-10 italic border-b-4 border-yellow-300 self-center w-3/5 md:w-1/5'>
         Your Wishlist:
       </p>
 
@@ -38,7 +38,7 @@ const index = () => {
       {user ? (
         signedInView
       ) : (
-        <p className='text-center text-4xl'>
+        <p className='text-center text-4xl mt-48'>
           Please Sign In to view your Wishlist!
         </p>
       )}

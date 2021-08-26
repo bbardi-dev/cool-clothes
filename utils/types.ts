@@ -1,9 +1,17 @@
+interface CommerceAsset {
+  image_dimensions: { width: number; height: number };
+  description: string | null;
+  id: string;
+  url: string;
+}
+
 export interface Category {
   description: string | null;
   id: string;
   name: string;
   products: number;
   slug: string;
+  assets: CommerceAsset[];
 }
 interface ProductData {
   categories: Array<{ id: string; name: string; slug: string }>;

@@ -17,42 +17,47 @@ const ProductDetails = () => {
     products?.filter((product: Product) => product.id === id)[0] ?? null;
 
   return (
-    <div className='h-screen flex flex-col items-center justify-center gap-12'>
+    <div className='h-full w-full md:h-screen md:mt-10 flex flex-col items-center justify-center gap-24'>
       {thisProduct ? (
-        <div className='h-5/6 grid grid-rows-2 md:grid-cols-2 md:grid-rows-1 gap-20'>
-          <div>
-            <div
-              className='w-full h-full bg-contain bg-no-repeat bg-center'
-              style={{ backgroundImage: `url(${thisProduct?.media?.source})` }}
-            />
-          </div>
-          <div className='flex flex-col gap-6'>
+        <div className='h-5/6 w-full grid grid-rows-2 md:grid-cols-2 md:grid-rows-1 gap-8'>
+          <div
+            className='w-full h-full bg-cover bg-no-repeat bg-center'
+            style={{ backgroundImage: `url(${thisProduct?.media?.source})` }}
+          />
+
+          <div className='flex flex-col justify-center gap-6'>
             <h1
-              className='font-light text-7xl'
+              className='font-light text-5xl md:text-7xl'
               dangerouslySetInnerHTML={{ __html: thisProduct?.name || "" }}
             />
-            <h2 className='font-semibold text-6xl'>
+            <h2 className='font-semibold text-4xl md:text-6xl'>
               {thisProduct?.price?.formatted_with_symbol}
             </h2>
-            {thisProduct?.categories?.map((category) => (
-              <Link key={category.id} href={`/shop/${category.slug}`} passHref>
-                <motion.a
-                  whileHover={{
-                    color: "#FFF",
-                  }}
-                  className='text-lg cursor-pointer'
+            <div className='flex gap-4'>
+              {thisProduct?.categories?.map((category) => (
+                <Link
+                  key={category.id}
+                  href={`/shop/${category.slug}`}
+                  passHref
                 >
-                  {category?.name}
-                </motion.a>
-              </Link>
-            ))}
+                  <motion.a
+                    whileHover={{
+                      color: "#FFF",
+                    }}
+                    className='text-lg cursor-pointer'
+                  >
+                    {category?.name}
+                  </motion.a>
+                </Link>
+              ))}
+            </div>
             <h4
-              className='text-2xl'
+              className='text-xl md:text-2xl'
               dangerouslySetInnerHTML={{
                 __html: thisProduct?.description || "This product is very Cool",
               }}
             />
-            <div className='flex items-center justify-start'>
+            <div className='flex items-center justify-between'>
               <button
                 onClick={() => dispatch(addItem(thisProduct))}
                 className='bg-yellow-300 py-3 px-6 rounded-md text-3xl w-1/2'
@@ -70,7 +75,12 @@ const ProductDetails = () => {
         "Something went wrong!"
       )}
       <Link href='/shop'>
-        <a className='text-4xl'> &#10094; Back to Shop</a>
+        <motion.a
+          whileHover={{ scale: 1.2, originX: 0 }}
+          className='text-4xl cursor-pointer'
+        >
+          &#10094; Back to Shop
+        </motion.a>
       </Link>
     </div>
   );
