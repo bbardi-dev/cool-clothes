@@ -1,5 +1,7 @@
 import { useSelector } from "react-redux";
 import Link from "next/link";
+import Image from "next/image";
+
 import { AppState } from "../../redux/types";
 import { Category } from "../../utils/types";
 
@@ -14,10 +16,21 @@ const index = () => {
       {categories?.map((category) => (
         <Link key={category.id} href={`/shop/${category.slug}`} passHref>
           <a className='my-4'>
-            <div
+            {/* <div
               className='w-full h-72 md:h-80 lg:h-96 bg-cover bg-no-repeat bg-center rounded-sm'
               style={{ backgroundImage: `url(${category.assets[0].url})` }}
-            />
+            /> */}
+
+            <div className='relative w-full h-72 md:h-80 lg:h-96 rounded-sm'>
+              <Image
+                src={category.assets[0].url || ""}
+                layout='fill'
+                quality={100}
+                objectFit='cover'
+                placeholder='blur'
+                blurDataURL={category.assets[0].url || ""}
+              />
+            </div>
             <span className='w-full flex justify-center bg-gray-800 text-white text-4xl font-semibold rounded-sm'>
               {category.name}
             </span>

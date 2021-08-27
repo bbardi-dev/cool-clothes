@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Product } from "../../utils/types";
 
 const CollectionItem = ({
@@ -11,10 +12,17 @@ const CollectionItem = ({
   return (
     <div className='group h-96 w-52 flex flex-col items-center relative m-1 '>
       <Link href={`/shop/products/${product.id}`} passHref>
-        <a
-          className='hover:opacity-75 w-full h-5/6 bg-cover bg-center mb-1.5 rounded-sm cursor-pointer'
-          style={{ backgroundImage: `url(${product.media?.source})` }}
-        />
+        <a className='hover:opacity-75 w-full h-5/6 mb-1.5 rounded-sm cursor-pointer relative'>
+          <Image
+            src={product.media?.source || ""}
+            layout='fill'
+            quality={100}
+            priority
+            objectFit='cover'
+            placeholder='blur'
+            blurDataURL={product.media?.source || ""}
+          />
+        </a>
       </Link>
 
       <div className='w-full h-1/6 flex justify-between'>

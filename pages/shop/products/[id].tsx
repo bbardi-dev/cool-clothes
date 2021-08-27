@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { motion } from "framer-motion";
@@ -20,10 +21,16 @@ const ProductDetails = () => {
     <div className='h-full w-full md:h-screen md:mt-10 flex flex-col items-center justify-center gap-24'>
       {thisProduct ? (
         <div className='h-5/6 w-full grid grid-rows-2 md:grid-cols-2 md:grid-rows-1 gap-8'>
-          <div
-            className='w-full h-full bg-cover bg-no-repeat bg-center'
-            style={{ backgroundImage: `url(${thisProduct?.media?.source})` }}
-          />
+          <div className='relative'>
+            <Image
+              src={thisProduct.media?.source || ""}
+              layout='fill'
+              quality={100}
+              objectFit='cover'
+              placeholder='blur'
+              blurDataURL={thisProduct.media?.source || ""}
+            />
+          </div>
 
           <div className='flex flex-col justify-center gap-6'>
             <h1

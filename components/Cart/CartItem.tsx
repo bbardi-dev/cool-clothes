@@ -7,15 +7,19 @@ interface Props {
 
 const CartItem = ({ item: { name, media, id, price, quantity } }: Props) => {
   return (
-    <div className=' w-full flex h-20 mb-4'>
-      <Image
-        width={60}
-        height={120}
-        src={media?.source ?? ""}
-        quality={100}
-        alt='item'
-      ></Image>
-      <div className='w-3/4 flex flex-col items-start justify-center px-3 py-5'>
+    <div className='w-full flex h-20 mb-4'>
+      <div className='relative w-1/2 rounded-sm'>
+        <Image
+          src={media?.source ?? ""}
+          layout='fill'
+          quality={100}
+          alt='cart item'
+          objectFit='cover'
+          placeholder='blur'
+          blurDataURL={media?.source ?? ""}
+        />
+      </div>
+      <div className='w-1/2 flex flex-col items-start justify-center px-3 py-5'>
         <span>{name}</span>
         <span>
           {quantity} x {price?.formatted_with_symbol}
