@@ -1,12 +1,8 @@
 import firebase from "firebase/app";
-import { GetServerSideProps } from "next";
 import firebaseClient from "../../utils/firebase/firebaseClient";
-import nookies from "nookies";
-import { verifyIdToken } from "../../utils/firebase/firebaseAdmin";
 import { useRouter } from "next/dist/client/router";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentUser } from "../../redux/actions/userActions";
-import { User } from "@prisma/client";
 import { AppState, ReduxUser } from "../../redux/types";
 
 const user = () => {

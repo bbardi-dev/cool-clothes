@@ -81,14 +81,14 @@ const ProductDetails = () => {
       ) : (
         "Something went wrong!"
       )}
-      <Link href='/shop'>
-        <motion.a
-          whileHover={{ scale: 1.2, originX: 0 }}
-          className='text-4xl cursor-pointer'
-        >
-          &#10094; Back to Shop
-        </motion.a>
-      </Link>
+
+      <motion.button
+        whileHover={{ scale: 1.2, originX: 0 }}
+        className='text-4xl cursor-pointer'
+        onClick={() => router.back()}
+      >
+        &#10094; Go Back
+      </motion.button>
     </div>
   );
 };

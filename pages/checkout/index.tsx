@@ -19,7 +19,7 @@ const index = () => {
 
   return (
     <div className='flex flex-col gap-6 items-center mt-12'>
-      <div className='w-full grid grid-cols-5 border-b-4 border-yellow-300 text-center text-lg md:text-4xl'>
+      <div className='w-full grid grid-cols-5 border-b-4 border-yellow-300 text-sm text-center md:text-4xl'>
         <div>Product</div>
         <div>Description</div>
         <div>Price</div>

@@ -10,7 +10,7 @@ const CollectionItem = ({
   withWishlist?: () => JSX.Element;
 }) => {
   return (
-    <div className='group h-96 w-52 flex flex-col items-center relative m-1 '>
+    <div className='group h-40 w-40 flex flex-col items-center relative my-1 md:h-96 md:w-52'>
       <Link href={`/shop/products/${product.id}`} passHref>
         <a className='hover:opacity-75 w-full h-5/6 mb-1.5 rounded-sm cursor-pointer relative'>
           <Image
@@ -25,10 +25,12 @@ const CollectionItem = ({
         </a>
       </Link>
 
-      <div className='w-full h-1/6 flex justify-between'>
+      <div className='w-full h-1/6 flex justify-between items-center py-6'>
         <div className='w-3/4 flex flex-col items-start justify-evenly'>
-          <span className='w-10/12 text-lg leading-4'>{product.name}</span>
-          <span className='w-2/12 text-md font-semibold leading-4'>
+          <span className='w-10/12 text-base md:text-lg leading-4'>
+            {product.name}
+          </span>
+          <span className='w-2/12 text-sm md:text-base font-semibold leading-4'>
             {product.price?.formatted_with_symbol}
           </span>
         </div>

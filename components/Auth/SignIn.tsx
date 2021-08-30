@@ -68,7 +68,7 @@ const SignIn = () => {
 
         <input
           type='submit'
-          className='bg-green-400 text-gray-800 p-3 mt-8 text-2xl'
+          className='bg-green-400 text-gray-800 p-3 mt-8 text-2xl cursor-pointer focus:bg-white'
           value={"Log In"}
           disabled={submitting}
         />

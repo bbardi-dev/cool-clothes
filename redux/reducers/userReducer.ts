@@ -12,7 +12,7 @@ const initialState: UserState = {
 const userReducer = (state = initialState, action: ActionTypes) => {
   switch (action.type) {
     case SET_CURRENT_USER:
-      return { ...state.currentUser, currentUser: action.payload };
+      return { ...state, currentUser: action.payload };
     case UPDATE_WISHLIST:
       return {
         ...state,

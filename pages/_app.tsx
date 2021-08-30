@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { User } from "@prisma/client";
 import firebase from "firebase";
-import nookies from "nookies";
+
 //@ts-ignore
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
@@ -45,21 +45,21 @@ function MyApp({ Component, pageProps }: AppProps) {
       .onIdTokenChanged(async (firebaseUser: firebase.User | null) => {
         if (!firebaseUser) {
           dispatch(setCurrentUser(null));
-          nookies.set(undefined, "token", "", {});
           return null;
         }
-        const token = await firebaseUser.getIdToken();
+
+        console.log("FIREBASE USER", firebaseUser);
+
         const user: User | null = {
           uid: firebaseUser.uid,
           wishlist: [],
           displayName: firebaseUser.displayName || "User",
         };
         dispatch(setCurrentUser(user));
-        nookies.set(undefined, "token", token, {});
       });
 
     return () => unsubscribe();
-  }, []);
+  });
 
   const getWishlistItems = async (userId: string | null) => {
     try {

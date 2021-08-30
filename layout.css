@@ -101,12 +101,32 @@ img {
 
 .gridding {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  gap: 1rem;
+  place-items: center;
+}
+
+@media (max-width: 360px) {
+  .gridding {
+    grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+  }
+}
+@media (min-width: 768px) {
+  .gridding {
+    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+    gap: 1.5rem;
+  }
 }
 
 .shop-page {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr));
   gap: 1.5rem;
+}
+
+@media (max-width: 767px) {
+  .shop-page {
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    gap: 1.2rem;
+  }
 }
