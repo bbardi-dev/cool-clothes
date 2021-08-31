@@ -10,7 +10,7 @@ const CollectionItem = ({
   withWishlist?: () => JSX.Element;
 }) => {
   return (
-    <div className='group h-40 w-40 flex flex-col items-center relative my-1 md:h-96 md:w-52'>
+    <div className='group h-40 w-40 flex flex-col items-center relative my-1 md:h-96 md:w-52 lg:h-120 lg:w-72'>
       <Link href={`/shop/products/${product.id}`} passHref>
         <a className='hover:opacity-75 w-full h-5/6 mb-1.5 rounded-sm cursor-pointer relative'>
           <Image

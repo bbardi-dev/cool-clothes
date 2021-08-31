@@ -17,7 +17,7 @@ const Categories = () => {
     ) ?? [];
 
   return (
-    <div className='flex flex-col gap-10'>
+    <div className='flex flex-col gap-10 mt-10'>
       <div className='gridding'>
         {products
           ? filteredByCategory.map((product) => (

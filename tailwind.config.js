@@ -49,6 +49,12 @@ module.exports = {
         "3/4": "75%",
         full: "100%",
       },
+      height: {
+        0: "0",
+        120: "30rem",
+        144: "36rem",
+        192: "48rem",
+      },
       screens: {
         xs: "300px",
       },
