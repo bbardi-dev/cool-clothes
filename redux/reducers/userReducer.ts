@@ -9,7 +9,7 @@ const initialState: UserState = {
   currentUser: null,
 };
 
-const userReducer = (state = initialState, action: ActionTypes) => {
+const userReducer = (state: UserState = initialState, action: ActionTypes) => {
   switch (action.type) {
     case SET_CURRENT_USER:
       return { ...state, currentUser: action.payload };

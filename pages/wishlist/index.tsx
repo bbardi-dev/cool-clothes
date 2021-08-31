@@ -20,15 +20,14 @@ const index = () => {
       </p>
 
       <div className='gridding'>
-        {products
-          ? inWishList.map((product) => (
-              <CollectionItem
-                key={product.id}
-                product={product}
-                withWishlist={() => <WishlistIcon productId={product.id} />}
-              />
-            ))
-          : null}
+        {inWishList &&
+          inWishList.map((product) => (
+            <CollectionItem
+              key={product.id}
+              product={product}
+              withWishlist={() => <WishlistIcon productId={product.id} />}
+            />
+          ))}
       </div>
     </>
   );

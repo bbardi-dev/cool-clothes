@@ -48,8 +48,6 @@ function MyApp({ Component, pageProps }: AppProps) {
           return null;
         }
 
-        console.log("FIREBASE USER", firebaseUser);
-
         const user: User | null = {
           uid: firebaseUser.uid,
           wishlist: [],

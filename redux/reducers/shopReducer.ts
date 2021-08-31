@@ -10,7 +10,7 @@ const initialState: ShopState = {
   products: null,
 };
 
-const shopReducer = (state = initialState, action: ActionTypes) => {
+const shopReducer = (state: ShopState = initialState, action: ActionTypes) => {
   switch (action.type) {
     case UPDATE_PRODUCTS:
       return {
