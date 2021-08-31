@@ -17,9 +17,6 @@ const rootReducer: Reducer<AppState, ActionTypes> = (state, action) => {
       ...state, // use previous state
       ...action.payload, // apply delta from hydration
     };
-    // if (state.count.count) nextState.count.count = state.count.count; // EXAMPLE: preserve count value on client side navigation
-    if (state?.cart.cartItems) nextState.cart.cartItems = state.cart.cartItems;
-    nextState.cart.hidden = state?.cart.hidden;
     return nextState;
   } else {
     return combinedReducers(state, action);
