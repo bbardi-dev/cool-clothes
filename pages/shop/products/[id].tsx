@@ -27,8 +27,6 @@ const ProductDetails = () => {
               layout='fill'
               quality={100}
               objectFit='cover'
-              placeholder='blur'
-              blurDataURL={thisProduct.media?.source || ""}
             />
           </div>
 

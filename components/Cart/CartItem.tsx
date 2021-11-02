@@ -15,8 +15,6 @@ const CartItem = ({ item: { name, media, id, price, quantity } }: Props) => {
           quality={100}
           alt='cart item'
           objectFit='cover'
-          placeholder='blur'
-          blurDataURL={media?.source ?? ""}
         />
       </div>
       <div className='w-1/2 flex flex-col items-start justify-center px-3 py-5'>

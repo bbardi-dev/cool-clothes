@@ -23,4 +23,4 @@ const makeStore = wrapMakeStore(() =>
   createStore(rootReducer, composeEnhancers(applyMiddleware(...middleware)))
 );
 
-export const wrapper = createWrapper(makeStore, { debug: true });
+export const wrapper = createWrapper(makeStore);

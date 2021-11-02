@@ -19,8 +19,6 @@ const CollectionItem = ({
             quality={100}
             priority
             objectFit='cover'
-            placeholder='blur'
-            blurDataURL={product.media?.source || ""}
           />
         </a>
       </Link>

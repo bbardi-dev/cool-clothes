@@ -22,8 +22,6 @@ const index = () => {
                 layout='fill'
                 quality={100}
                 objectFit='cover'
-                placeholder='blur'
-                blurDataURL={category.assets[0].url || ""}
               />
             </div>
             <span className='w-full flex justify-center bg-gray-800 text-white text-4xl font-semibold rounded-sm'>

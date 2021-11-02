@@ -57,7 +57,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       });
 
     return () => unsubscribe();
-  });
+  }, []);
 
   const getWishlistItems = async (userId: string | null) => {
     try {
@@ -74,12 +74,14 @@ function MyApp({ Component, pageProps }: AppProps) {
   };
 
   useEffect(() => {
-    (async () => {
-      const res = await getWishlistItems(uid);
-      if (res) {
-        dispatch(updateWishlist(res.wishlist));
-      }
-    })();
+    if (uid) {
+      (async () => {
+        const res = await getWishlistItems(uid);
+        if (res) {
+          dispatch(updateWishlist(res.wishlist));
+        }
+      })();
+    }
   }, [uid]);
 
   return (

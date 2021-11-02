@@ -3,6 +3,7 @@ import { AppState } from "../../redux/types";
 import { Product } from "../../utils/types";
 import CollectionItem from "../../components/Collection/CollectionItem";
 import WishlistIcon from "../../components/WishlistIcon";
+import { useEffect } from "react";
 
 const index = () => {
   const products = useSelector((state: AppState) => state.shop.products);
