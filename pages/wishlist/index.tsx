@@ -3,16 +3,20 @@ import { AppState } from "../../redux/types";
 import { Product } from "../../utils/types";
 import CollectionItem from "../../components/Collection/CollectionItem";
 import WishlistIcon from "../../components/WishlistIcon";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const index = () => {
   const products = useSelector((state: AppState) => state.shop.products);
   const user = useSelector((state: AppState) => state.user.currentUser);
+  const [inWishList, setInWishList] = useState<Product[] | null>(null);
 
-  const inWishList: Product[] =
-    products?.filter((product: Product) =>
-      user?.wishlist?.includes(product.id ?? "")
-    ) ?? [];
+  useEffect(() => {
+    setInWishList(
+      products?.filter((product: Product) =>
+        user?.wishlist?.includes(product.id ?? "")
+      ) ?? []
+    );
+  }, []);
 
   const signedInView = (
     <>
@@ -22,7 +26,7 @@ const index = () => {
 
       <div className='gridding'>
         {inWishList &&
-          inWishList.map((product) => (
+          inWishList.map((product: Product) => (
             <CollectionItem
               key={product.id}
               product={product}

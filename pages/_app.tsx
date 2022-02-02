@@ -106,12 +106,12 @@ MyApp.getInitialProps = async (appContext: AppContext) => {
   const appProps = await App.getInitialProps(appContext);
   const appState: AppState = appContext.ctx.store.getState();
 
-  if (!appState.shop.products) {
+  if (appState.shop.products === null) {
     const { data: products } = await commerce.products.list({ limit: 200 });
     appContext.ctx.store.dispatch(updateProducts(products));
   }
 
-  if (!appState.shop.categories) {
+  if (appState.shop.categories === null) {
     const { data: categories } = await commerce.categories.list();
     appContext.ctx.store.dispatch(updateCategories(categories));
   }

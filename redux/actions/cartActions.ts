@@ -5,6 +5,7 @@ import {
   CLEAR_ITEM_FROM_CART,
   TOGGLE_CART,
   REMOVE_ITEM,
+  CLEAR_ALL_ITEMS_FROM_CART,
 } from "../types";
 
 export const toggleCart = (): ActionTypes => ({
@@ -20,7 +21,10 @@ export const removeItem = (item: Product): ActionTypes => ({
   type: REMOVE_ITEM,
   payload: item,
 });
-export const removeItemFromCart = (item: Product): ActionTypes => ({
+export const clearItemFromCart = (item: Product): ActionTypes => ({
   type: CLEAR_ITEM_FROM_CART,
   payload: item,
+});
+export const clearAllItemsFromCart = (): ActionTypes => ({
+  type: CLEAR_ALL_ITEMS_FROM_CART,
 });

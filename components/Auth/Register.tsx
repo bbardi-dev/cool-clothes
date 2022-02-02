@@ -52,7 +52,7 @@ const Register = () => {
             displayName: displayName,
           });
         } else throw new Error("Something went wrong!");
-      } catch (error) {
+      } catch (error: any) {
         console.log(error.message);
       } finally {
         setSub(false);

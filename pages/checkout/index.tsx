@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import CheckoutItem from "../../components/Checkout/CheckoutItem";
+import StripeButton from "../../components/Checkout/StripeButton";
 import { AppState } from "../../redux/types";
 
 const index = () => {
@@ -34,6 +35,17 @@ const index = () => {
         <p className='text-2xl'>No items in Cart</p>
       )}
       <div className='text-3xl'>TOTAL: ${totalValue.toFixed(2)}</div>
+      {cartItems.length > 0 ? (
+        <>
+          <div>
+            *Use this test card data*: <br />
+            Card number: 4242 4242 4242 4242, <br />
+            MM/YY: any valid date, <br />
+            CVC: any three digit number
+          </div>
+          <StripeButton price={totalValue} />
+        </>
+      ) : null}
     </div>
   );
 };

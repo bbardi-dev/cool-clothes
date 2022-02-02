@@ -8,6 +8,7 @@ export const TOGGLE_CART = "TOGGLE_CART";
 export const ADD_ITEM = "ADD_ITEM";
 export const REMOVE_ITEM = "REMOVE_ITEM";
 export const CLEAR_ITEM_FROM_CART = "CLEAR_ITEM_FROM_CART";
+export const CLEAR_ALL_ITEMS_FROM_CART = "CLEAR_ALL_ITEMS_FROM_CART";
 export const UPDATE_PRODUCTS = "UPDATE_PRODUCTS";
 export const UPDATE_CATEGORIES = "UPDATE_CATEGORIES";
 
@@ -19,6 +20,7 @@ export type ActionTypes =
   | { type: typeof ADD_ITEM; payload: Product }
   | { type: typeof REMOVE_ITEM; payload: Product }
   | { type: typeof CLEAR_ITEM_FROM_CART; payload: Product }
+  | { type: typeof CLEAR_ALL_ITEMS_FROM_CART }
   | { type: typeof UPDATE_PRODUCTS; payload: Product[] }
   | { type: typeof UPDATE_CATEGORIES; payload: Category[] };
 

@@ -26,7 +26,7 @@ const SignIn = () => {
     try {
       await firebase.auth().signInWithEmailAndPassword(email, password);
       router.push("/");
-    } catch (error) {
+    } catch (error: any) {
       console.log(error.message);
     }
     setSub(false);

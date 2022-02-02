@@ -17,6 +17,7 @@ const rootReducer: Reducer<AppState, ActionTypes> = (state, action) => {
       ...state, // use previous state
       ...action.payload, // apply delta from hydration
     };
+    // if (state?.cart) nextState.cart = state.cart;
     return nextState;
   } else {
     return combinedReducers(state, action);

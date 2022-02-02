@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import {
   addItem,
   removeItem,
-  removeItemFromCart,
+  clearItemFromCart,
 } from "../../redux/actions/cartActions";
 import { Product } from "../../utils/types";
 
@@ -45,7 +45,7 @@ const CheckoutItem = ({ item }: Props) => {
         </div>
       </div>
       <div
-        onClick={() => dispatch(removeItemFromCart(item))}
+        onClick={() => dispatch(clearItemFromCart(item))}
         className='cursor-pointer text-2xl'
       >
         &#10005;
