@@ -6,7 +6,7 @@ An e-commerce app with all the basic functionalities working. Linked to Commerce
 
 Deployed at: "https://cool-clothes.vercel.app/"
 
-![Demo]()
+![Demo](cool-clothes.gif)
 
 ## Features
 
