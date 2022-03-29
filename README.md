@@ -1,6 +1,6 @@
 # Cool Clothes - E-commerce app
 
-An e-commerce app with all the basic functionalities working. Linked to Commerce.js SDK/CDN for customizable categories/products.
+An e-commerce application featuring user authentication, dynamic products from the backend, shopping cart functionality, wishlist functionality saved to database, Stripe payment. Linked to Commerce.js SDK/CDN for customizable categories/products. Design by me in Figma.
 
 ## Demo
 
