@@ -11,7 +11,7 @@ Deployed at: "https://cool-clothes.vercel.app/"
 ## Features
 
 - User authentication - Register/Login/Logout with Firebase Auth
-- Shop section with customizable product data from SDK
+- Shop section with customizable product data from SDK/CMS
 - Cart functionality
 - Wishlist functionality saved on the server for individual users
 - Checkout with Stripe payment integration(does not work with real cards, etc.)
@@ -25,4 +25,4 @@ Deployed at: "https://cool-clothes.vercel.app/"
 
 ## Lessons Learned
 
-React, Redux, using Redux with Typescript, Next.js SSG vs. SSR vs. CSR, Firebase Authentication, Cookies/Tokens, Third-party API/CDN/SDK integration, basic structure and concerns of building e-commerce applications, dealing with problems of state managment & third-party libraries
+React, Redux, using Redux with Typescript, Next.js SSG vs. SSR vs. CSR, Firebase Authentication, Cookies/Tokens, Third-party API & CMS/SDK integration, basic structure and concerns of building e-commerce applications, dealing with problems of state managment & third-party libraries
